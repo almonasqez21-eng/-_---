@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.M. Sport - للملابس والمنتجات الرياضية</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Cairo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0055a5',
+                            dark: '#0a2540',
+                            accent: '#f39c12'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-cairo text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Header / Navigation -->
+    <header class="bg-brand-dark text-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo & Brand Name -->
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center p-1 border-2 border-brand-blue">
+                    <span class="text-brand-blue font-extrabold text-xl">A.M</span>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-xl tracking-wide text-white">A.M. Sport</h1>
+                    <p class="text-xs text-blue-200">Casual Wear & Sports</p>
+                </div>
+            </div>
+
+            <!-- Contact & Cart -->
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/201151944700" target="_blank" class="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3 rounded-lg transition">
+                    <i class="fab font-bold text-lg fa-whatsapp"></i>
+                    <span>تواصل معنا</span>
+                </a>
+                
+                <!-- Cart Button -->
+                <button id="cartBtn" class="relative bg-brand-blue hover:bg-blue-600 p-2.5 rounded-lg text-white transition">
+                    <i class="fas fa-shopping-cart text-lg"></i>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner / Hero Section -->
+    <section class="bg-gradient-to-r from-brand-dark to-brand-blue text-white py-12 px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-black mb-3">أحدث تشكيلة ملابس وأطقم رياضية</h2>
+            <p class="text-blue-100 text-base md:text-lg mb-6">خامات عالية الجودة، أسعار تنافسية، وشحن متاح لجميع المحافظات</p>
+            <div class="inline-flex gap-3 bg-white/10 p-2 rounded-xl backdrop-blur-sm border border-white/20">
+                <span class="text-sm px-3 py-1 bg-white text-brand-dark font-bold rounded-lg"><i class="fas fa-shipping-fast text-brand-blue ml-1"></i> توصيل سريع</span>
+                <span class="text-sm px-3 py-1 bg-white text-brand-dark font-bold rounded-lg"><i class="fas fa-check-circle text-brand-blue ml-1"></i> خامة ممتازة</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Categories -->
+    <section class="container mx-auto px-4 py-6">
+        <div class="flex flex-wrap justify-center gap-2 md:gap-4" id="filterContainer">
+            <button onclick="filterProducts('all')" class="filter-btn active bg-brand-dark text-white font-semibold px-4 py-2 rounded-full text-sm shadow transition">الكل</button>
+            <button onclick="filterProducts('sets')" class="filter-btn bg-white hover:bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-full text-sm border border-gray-200 shadow-sm transition">أطقم رياضية</button>
+            <button onclick="filterProducts('shorts')" class="filter-btn bg-white hover:bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-full text-sm border border-gray-200 shadow-sm transition">شورتات وملابس</button>
+        </div>
+    </section>
+
+    <!-- Products Grid Section -->
+    <main class="container mx-auto px-4 py-4 flex-grow">
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- المنتجات سيتم توليدها ديناميكياً بواسطة Javascript -->
+        </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-end">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto">
+            <div>
+                <div class="flex justify-between items-center border-b pb-4 mb-4">
+                    <h3 class="text-xl font-bold text-gray-800"><i class="fas fa-shopping-bag ml-2 text-brand-blue"></i>سلة المشتريات</h3>
+                    <button id="closeCart" class="text-gray-400 hover:text-red-500 text-2xl font-bold">&times;</button>
+                </div>
+                
+                <div id="cartItems" class="space-y-4">
+                    <!-- العناصر المضافة تظهر هنا -->
+                    <p id="emptyCartMsg" class="text-center text-gray-500 py-8">السلة فارغة حالياً.</p>
+                </div>
+            </div>
+
+            <div class="border-t pt-4 mt-6">
+                <div class="flex justify-between items-center mb-4 text-lg font-bold">
+                    <span>الإجمالي:</span>
+                    <span id="cartTotal" class="text-brand-blue">0 ج.م</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition shadow-lg">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    <span>إرسال الطلب عبر الواتساب</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white text-center py-6 mt-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 space-y-2">
+            <p class="font-bold text-lg">A.M. Sport</p>
+            <p class="text-sm text-gray-400">العنوان: أسيوط - مركز الفتح - أمام كبري العصارة - بجوار فرع الفودافون واتصالات </p>
+            <p class="text-xs text-gray-500 pt-2">تواصل واتساب / تلفون: 01151944700</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        // مصفوفة المنتجات بأسماء الصور الفعلية من المجلد
+        const products = [
+            {
+                id: 1,
+                name: "طقم Adidas ابيض وزيتي",
+                category: "sets",
+                price: 380,
+                sizes: ["L", "XL", "2XL"],
+                image: "اديدس ابيض وزيتي.jfif",
+                brand: "Adidas"
+            },
+            {
+                id: 2,
+                name: "طقم Adidas ازرق وبنطلون",
+                category: "sets",
+                price: 380,
+                sizes: ["L", "XL", "2XL"],
+                image: "اديدس ازرق وبنطلون.jfif",
+                brand: "Adidas"
+            },
+            {
+                id: 3,
+                name: "طقم Adidas ازرق وشورت",
+                category: "sets",
+                price: 350,
+                sizes: ["L", "XL", "2XL"],
+                image: "اديدس ازرق وشرت.jfif",
+                brand: "Adidas"
+            },
+            {
+                id: 4,
+                name: "طقم Adidas اسود وشورت",
+                category: "sets",
+                price: 350,
+                sizes: ["L", "XL", "2XL"],
+                image: "اديدس اسود وشرت.jfif",
+                brand: "Adidas"
+            },
+            {
+                id: 5,
+                name: "طقم بومة ابيض وبرتقالي",
+                category: "sets",
+                price: 350,
+                sizes: ["L", "XL", "2XL"],
+                image: "بوما ابيض وبرتقالي.jfif",
+                brand: "Puma"
+            },
+            {
+                id: 6,
+                name: "طقم بومة ازرق وبرتقالي",
+                category: "sets",
+                price: 350,
+                sizes: ["L", "XL", "2XL"],
+                image: "بوما ازرق وبرتقالي.jfif",
+                brand: "Puma"
+            },
+            {
+                id: 7,
+                name: "طقم بومة اسود وبرتقالي",
+                category: "sets",
+                price: 350,
+                sizes: ["L", "XL", "2XL"],
+                image: "بوما اسود وبرتقالي.jfif",
+                brand: "Puma"
+            },
+            {
+                id: 8,
+                name: "طقم نايكل ابيض واسود",
+                category: "sets",
+                price: 380,
+                sizes: ["L", "XL", "2XL"],
+                image: "نايكل ابيض واسود.jfif",
+                brand: "Nike"
+            },
+            {
+                id: 9,
+                name: "طقم نايكل ابيض ورادي",
+                category: "sets",
+                price: 380,
+                sizes: ["L", "XL", "2XL"],
+                image: "نايكل ابيض ورمادي.jfif",
+                brand: "Nike"
+            },
+            {
+                id: 10,
+                name: "شورت Jordan 23 شبك رياضي",
+                category: "shorts",
+                price: 180,
+                sizes: ["L", "XL", "2XL"],
+                image: "شورت ولد  ابيض.jfif",
+                brand: "Jordan"
+            },
+            {
+                id: 11,
+                name: "شورت Adidas سوفت أبيض كلاسيك",
+                category: "shorts",
+                price: 150,
+                sizes: ["M", "L", "XL", "2XL"],
+                image: "اديدس شورت.png",
+                brand: "Adidas"
+            }
+        ];
+
+        let cart = [];
+
+        // عرض المنتجات
+        function displayProducts(items) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = items.map(product => `
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="relative bg-gray-100 h-64 overflow-hidden">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-full font-bold">
+                                ${product.brand}
+                            </span>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-800 text-lg mb-1 leading-snug">${product.name}</h3>
+                            <div class="mb-3">
+                                <label class="text-xs text-gray-500 block mb-1">اختر المقاس المطلوب <span class="text-red-500">*</span>:</label>
+                                <select id="size-${product.id}" class="w-full bg-gray-50 border border-gray-200 text-gray-700 text-xs rounded-lg p-2 font-semibold focus:outline-none focus:border-brand-blue">
+                                    <option value="" disabled selected>-- حدد المقاس --</option>
+                                    ${product.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+                                </select>
+                            </div>
+                            <div class="text-brand-blue font-extrabold text-xl">${product.price} <span class="text-xs font-normal">ج.م</span></div>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0">
+                        <button onclick="addToCart(${product.id})" class="w-full bg-brand-blue hover:bg-brand-dark text-white py-2.5 rounded-xl font-bold text-sm transition flex items-center justify-center gap-2">
+                            <i class="fas fa-cart-plus"></i> إضافة للسلة
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // فلترة المنتجات
+        function filterProducts(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand-dark', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-white', 'text-gray-700');
+            event.target.classList.add('bg-brand-dark', 'text-white');
+
+            if (category === 'all') {
+                displayProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                displayProducts(filtered);
+            }
+        }
+
+        // إضافة للسلّة مع التحقق من اختيار المقاس
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const sizeSelect = document.getElementById(`size-${productId}`);
+            const selectedSize = sizeSelect.value;
+
+            // التحقق مما إذا كان العميل قد حدد مقاساً
+            if (!selectedSize) {
+                alert("يرجى اختيار المقاس المناسب أولاً من القائمة قبل الإضافة إلى السلة.");
+                sizeSelect.focus();
+                return;
+            }
+
+            // البحث عن نفس المنتج بنفس المقاس في السلة
+            const existingItem = cart.find(item => item.id === productId && item.selectedSize === selectedSize);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, selectedSize: selectedSize, quantity: 1 });
+            }
+
+            updateCartUI();
+        }
+
+        // تحديث واجهة السلة
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            cartCount.textContent = totalQuantity;
+            cartTotal.textContent = `${totalPrice} ج.م`;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = `<p class="text-center text-gray-500 py-8">السلة فارغة حالياً.</p>`;
+            } else {
+                cartItems.innerHTML = cart.map((item, index) => `
+                    <div class="flex items-center justify-between border-b pb-3">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-sm text-gray-800">${item.name}</h4>
+                            <p class="text-xs text-gray-500 font-semibold mt-0.5">المقاس: <span class="text-brand-dark bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">${item.selectedSize}</span></p>
+                            <p class="text-xs text-brand-blue font-bold mt-1">${item.price} ج.م × ${item.quantity}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQuantity(${index}, -1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-sm font-bold">-</button>
+                            <span class="text-sm font-bold">${item.quantity}</span>
+                            <button onclick="changeQuantity(${index}, 1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-sm font-bold">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function changeQuantity(cartIndex, delta) {
+            if (cart[cartIndex]) {
+                cart[cartIndex].quantity += delta;
+                if (cart[cartIndex].quantity <= 0) {
+                    cart.splice(cartIndex, 1);
+                }
+            }
+            updateCartUI();
+        }
+
+        // إرسال عبر الواتساب شاملة المقاس
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert('السلة فارغة! قم بإضافة بعض المنتجات أولاً.');
+                return;
+            }
+
+            let message = "مرحباً A.M. Sport، أرغب في طلب المنتجات التالية:\n\n";
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name}\n- المقاس: ${item.selectedSize}\n- الكمية: ${item.quantity}\n- السعر: ${item.price * item.quantity} ج.م\n\n`;
+            });
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `*الإجمالي:* ${total} ج.م`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/201151944700?text=${encodedMessage}`, '_blank');
+        }
+
+        // فتح وإغلاق السلة
+        const cartModal = document.getElementById('cartModal');
+        document.getElementById('cartBtn').addEventListener('click', () => cartModal.classList.remove('hidden'));
+        document.getElementById('closeCart').addEventListener('click', () => cartModal.classList.add('hidden'));
+
+        // التهيئة المبدئية
+        displayProducts(products);
+    </script>
+</body>
+</html>
