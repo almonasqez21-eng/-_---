@@ -1,31 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/**
+ * A.M. Sport - Custom Stylesheet (Mobile Optimized)
+ */
 
-@layer utilities {
-    .bg-brand-blue { background-color: #0055a5; }
-    .bg-brand-dark { background-color: #0a2540; }
-    .text-brand-blue { color: #0055a5; }
-    .text-brand-dark { color: #0a2540; }
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
+
+:root {
+    font-family: 'Cairo', sans-serif;
 }
 
-.dark body {
-    color: #f1f5f9;
+/* تحسين التمرير وسلوك العناصر */
+html {
+    scroll-behavior: smooth;
 }
 
-.dark input::placeholder {
-    color: #94a3b8;
+body {
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-.dark ::-webkit-scrollbar-track { background: #0f172a; }
-::-webkit-scrollbar-thumb { background: #0055a5; border-radius: 4px; }
-.dark ::-webkit-scrollbar-thumb { background: #3b82f6; }
+/* تخصيص شريط التمرير (Scrollbar) لتجربة هاتف سلسة */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
 
-.line-clamp-1 {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(100, 116, 139, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 116, 139, 0.5);
+}
+
+/* تأثيرات حركية خفيفة */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+/* ضبط ظهور الخطوط والأزرار على الجوال */
+button, input, select {
+    font-family: 'Cairo', sans-serif;
+}
+
+/* منع تحديد النص العشوائي باللمس المطول للعناصر التفاعلية */
+.no-select {
+    -webkit-user-select: none;
+    user-select: none;
 }

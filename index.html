@@ -26,48 +26,48 @@
     </div>
 
     <!-- Banner العرض الخارجي البارز أعلى الموقع -->
-    <div id="bundleOfferBanner" class="bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-800 text-white py-2.5 px-4 shadow-md relative z-50 border-b border-blue-500/30">
-        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-right">
-            <div class="flex items-center gap-2 font-black text-xs sm:text-sm">
-                <span class="bg-yellow-400 text-slate-900 text-xs px-2.5 py-0.5 rounded-full font-extrabold animate-pulse">عرض خاص 🔥</span>
-                <span>اشترِ قطعتين أو أكثر واحصل على <span class="text-yellow-300 font-extrabold text-sm sm:text-base">خصم 10% تلقائي</span> عند إتمام الطلب!</span>
+    <div id="bundleOfferBanner" class="bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-800 text-white py-2 px-3 shadow-md relative z-50 border-b border-blue-500/30">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 text-center sm:text-right">
+            <div class="flex items-center justify-center sm:justify-start gap-1.5 font-black text-[11px] sm:text-xs">
+                <span class="bg-yellow-400 text-slate-900 text-[10px] px-2 py-0.5 rounded-full font-extrabold animate-pulse">عرض خاص 🔥</span>
+                <span>اشترِ قطعتين أو أكثر واحصل على <span class="text-yellow-300 font-extrabold text-xs sm:text-sm">خصم 10% تلقائي</span> عند إتمام الطلب!</span>
             </div>
             
-            <div class="flex items-center gap-3">
-                <div class="text-[11px] bg-black/30 px-3 py-1 rounded-lg border border-white/20 font-mono tracking-wider text-yellow-300 font-bold">
-                    ينتهي العرض خلال: <span id="bannerCountdown" class="font-extrabold">07D 00:00:00</span>
+            <div class="flex items-center justify-center gap-2">
+                <div class="text-[10px] bg-black/30 px-2.5 py-0.5 rounded-lg border border-white/20 font-mono tracking-wider text-yellow-300 font-bold">
+                    ينتهي خلال: <span id="bannerCountdown" class="font-extrabold">07D 00:00:00</span>
                 </div>
-                <button onclick="dismissBanner()" class="text-white/80 hover:text-white text-lg font-bold transition px-1" title="إغلاق">&times;</button>
+                <button onclick="dismissBanner()" class="text-white/80 hover:text-white text-base font-bold transition px-1" title="إغلاق">&times;</button>
             </div>
         </div>
     </div>
 
     <!-- Header / Navigation -->
     <header class="bg-slate-900 text-white sticky top-0 z-40 shadow-lg border-b border-slate-800">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center gap-2">
-            <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="showCatalogView()">
-                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center p-1 border-2 border-blue-600 shadow">
-                    <span class="text-blue-600 font-extrabold text-xl">A.M</span>
+        <div class="container mx-auto px-3 py-2.5 flex justify-between items-center gap-2">
+            <div class="flex items-center space-x-2 space-x-reverse cursor-pointer" onclick="showCatalogView()">
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center p-1 border-2 border-blue-600 shadow">
+                    <span class="text-blue-600 font-extrabold text-lg sm:text-xl">A.M</span>
                 </div>
-                <div class="hidden sm:block">
-                    <h1 class="font-black text-xl tracking-wide text-white">A.M. Sport</h1>
-                    <p class="text-xs text-blue-300 font-semibold">Casual Wear & Sports</p>
+                <div>
+                    <h1 class="font-black text-sm sm:text-lg tracking-wide text-white leading-tight">A.M. Sport</h1>
+                    <p class="text-[10px] sm:text-xs text-blue-300 font-semibold">Casual Wear & Sports</p>
                 </div>
             </div>
 
-            <div class="flex items-center gap-2 sm:gap-3">
-                <button onclick="toggleDarkMode()" class="p-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-yellow-400 transition" title="تبديل الوضع الليلي">
-                    <i id="darkModeIcon" class="fas fa-moon text-lg"></i>
+            <div class="flex items-center gap-1.5 sm:gap-2.5">
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-yellow-400 transition" title="تبديل الوضع الليلي">
+                    <i id="darkModeIcon" class="fas fa-moon text-base"></i>
                 </button>
 
-                <button onclick="openWishlistModal()" class="relative bg-white/10 hover:bg-white/20 p-2.5 rounded-lg text-white transition">
-                    <i class="fas fa-heart text-lg text-red-400"></i>
-                    <span id="wishlistCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-black w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                <button onclick="openWishlistModal()" class="relative bg-white/10 hover:bg-white/20 p-2 rounded-lg text-white transition">
+                    <i class="fas fa-heart text-base text-red-400"></i>
+                    <span id="wishlistCount" class="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[10px] font-black w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow">0</span>
                 </button>
 
-                <button id="cartBtn" class="relative bg-blue-600 hover:bg-blue-700 p-2.5 rounded-lg text-white transition">
-                    <i class="fas fa-shopping-cart text-lg"></i>
-                    <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-black w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                <button id="cartBtn" class="relative bg-blue-600 hover:bg-blue-700 p-2 rounded-lg text-white transition">
+                    <i class="fas fa-shopping-cart text-base"></i>
+                    <span id="cartCount" class="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[10px] font-black w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow">0</span>
                 </button>
 
                 <a href="https://wa.me/201151944700" target="_blank" class="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3.5 rounded-lg transition font-bold shadow">
@@ -81,35 +81,35 @@
     <!-- Catalog View -->
     <div id="catalogView">
         <!-- Hero Section -->
-        <section class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-12 px-4 text-center">
+        <section class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-8 px-4 text-center">
             <div class="max-w-3xl mx-auto">
-                <h2 class="text-2xl md:text-4xl font-black mb-3 leading-tight">أحدث تشكيلة ملابس وأطقم رياضية</h2>
-                <p class="text-blue-100 text-sm md:text-base mb-6 font-semibold">خامات عالية الجودة، أسعار تنافسية، واستلام فوري أو شحن لجميع المحافظات</p>
+                <h2 class="text-xl sm:text-3xl font-black mb-2 leading-tight">أحدث تشكيلة ملابس وأطقم رياضية</h2>
+                <p class="text-blue-100 text-xs sm:text-sm mb-5 font-semibold">خامات عالية الجودة، أسعار تنافسية، واستلام فوري أو شحن لجميع المحافظات</p>
                 
-                <div class="relative max-w-lg mx-auto">
-                    <input type="text" id="searchInput" oninput="applyFilters()" placeholder="ابحث عن منتج، ماركة، أو نوع..." class="w-full py-3 pr-11 pl-4 rounded-xl text-gray-900 bg-white dark:bg-slate-800 dark:text-white dark:border-slate-600 text-sm font-bold outline-none shadow-lg focus:ring-2 focus:ring-blue-500 border border-transparent">
-                    <i class="fas fa-search absolute right-4 top-3.5 text-gray-400 dark:text-gray-300"></i>
+                <div class="relative max-w-md mx-auto">
+                    <input type="text" id="searchInput" oninput="applyFilters()" placeholder="ابحث عن منتج، ماركة، أو نوع..." class="w-full py-2.5 pr-10 pl-4 rounded-xl text-gray-900 bg-white dark:bg-slate-800 dark:text-white dark:border-slate-600 text-xs sm:text-sm font-bold outline-none shadow-lg focus:ring-2 focus:ring-blue-500 border border-transparent">
+                    <i class="fas fa-search absolute right-3.5 top-3 text-gray-400 dark:text-gray-300 text-sm"></i>
                 </div>
             </div>
         </section>
 
         <!-- Filter & Sort Bar -->
-        <section class="container mx-auto px-4 py-6">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-4 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700">
+        <section class="container mx-auto px-3 py-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-3 bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700">
                 <!-- Categories -->
-                <div class="flex flex-wrap justify-center gap-2" id="filterContainer">
-                    <button onclick="setCategoryFilter('all', this)" class="filter-btn bg-slate-900 dark:bg-blue-600 text-white font-bold px-4 py-2 rounded-full text-sm shadow transition">الكل</button>
-                    <button onclick="setCategoryFilter('sets', this)" class="filter-btn bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-800 dark:text-gray-100 font-bold px-4 py-2 rounded-full text-sm border border-gray-200 dark:border-slate-600 transition">أطقم رياضية</button>
-                    <button onclick="setCategoryFilter('shorts', this)" class="filter-btn bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-800 dark:text-gray-100 font-bold px-4 py-2 rounded-full text-sm border border-gray-200 dark:border-slate-600 transition">شورتات وملابس</button>
+                <div class="flex flex-wrap justify-center gap-1.5" id="filterContainer">
+                    <button onclick="setCategoryFilter('all', this)" class="filter-btn bg-slate-900 dark:bg-blue-600 text-white font-bold px-3.5 py-1.5 rounded-full text-xs shadow transition">الكل</button>
+                    <button onclick="setCategoryFilter('sets', this)" class="filter-btn bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-800 dark:text-gray-100 font-bold px-3.5 py-1.5 rounded-full text-xs border border-gray-200 dark:border-slate-600 transition">أطقم رياضية</button>
+                    <button onclick="setCategoryFilter('shorts', this)" class="filter-btn bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-800 dark:text-gray-100 font-bold px-3.5 py-1.5 rounded-full text-xs border border-gray-200 dark:border-slate-600 transition">شورتات وملابس</button>
                 </div>
 
                 <!-- Size & Price Sorting Controls -->
-                <div class="flex flex-wrap items-center justify-center gap-3 w-full lg:w-auto">
+                <div class="flex flex-wrap items-center justify-center gap-2 w-full md:w-auto">
                     <!-- Size Filter -->
-                    <div class="flex items-center gap-2">
-                        <label for="filterSize" class="text-sm font-black text-gray-800 dark:text-gray-200 whitespace-nowrap"><i class="fas fa-ruler ml-1 text-blue-600 dark:text-blue-400"></i> المقاس:</label>
-                        <select id="filterSize" onchange="applyFilters()" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-sm font-bold rounded-xl p-2.5 outline-none focus:border-blue-500">
-                            <option value="all">جميع المقاسات</option>
+                    <div class="flex items-center gap-1.5">
+                        <label for="filterSize" class="text-xs font-black text-gray-800 dark:text-gray-200 whitespace-nowrap"><i class="fas fa-ruler ml-1 text-blue-600 dark:text-blue-400"></i> المقاس:</label>
+                        <select id="filterSize" onchange="applyFilters()" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-xs font-bold rounded-lg p-2 outline-none focus:border-blue-500">
+                            <option value="all">الكل</option>
                             <option value="M">M</option>
                             <option value="L">L</option>
                             <option value="XL">XL</option>
@@ -118,9 +118,9 @@
                     </div>
 
                     <!-- Sort Price -->
-                    <div class="flex items-center gap-2">
-                        <label for="sortPrice" class="text-sm font-black text-gray-800 dark:text-gray-200 whitespace-nowrap"><i class="fas fa-sort-amount-down ml-1 text-blue-600 dark:text-blue-400"></i> ترتيب:</label>
-                        <select id="sortPrice" onchange="applyFilters()" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-sm font-bold rounded-xl p-2.5 outline-none focus:border-blue-500">
+                    <div class="flex items-center gap-1.5">
+                        <label for="sortPrice" class="text-xs font-black text-gray-800 dark:text-gray-200 whitespace-nowrap"><i class="fas fa-sort-amount-down ml-1 text-blue-600 dark:text-blue-400"></i> ترتيب:</label>
+                        <select id="sortPrice" onchange="applyFilters()" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-xs font-bold rounded-lg p-2 outline-none focus:border-blue-500">
                             <option value="default">الافتراضي</option>
                             <option value="lowToHigh">من الأقل للأعلى</option>
                             <option value="highToLow">من الأعلى للأقل</option>
@@ -131,43 +131,43 @@
         </section>
 
         <!-- Products Grid Section -->
-        <main class="container mx-auto px-4 py-4 flex-grow">
-            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <main class="container mx-auto px-3 py-2 flex-grow">
+            <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
                 <!-- المنتجات تولد ديناميكياً -->
             </div>
         </main>
 
         <!-- Reviews Section -->
-        <section class="container mx-auto px-4 py-12">
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 md:p-8">
-                <div class="text-center mb-8">
-                    <h3 class="text-2xl font-black text-gray-900 dark:text-white"><i class="fas fa-star text-yellow-400 ml-2"></i> آراء وتقييمات عملاء A.M. Sport</h3>
-                    <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1 font-semibold">ثقتكم ورضاكم عن الخامات والمقاسات هي سر استمرارنا</p>
+        <section class="container mx-auto px-3 py-8">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-5 md:p-8">
+                <div class="text-center mb-6">
+                    <h3 class="text-lg sm:text-2xl font-black text-gray-900 dark:text-white"><i class="fas fa-star text-yellow-400 ml-1"></i> آراء وتقييمات عملاء A.M. Sport</h3>
+                    <p class="text-[11px] sm:text-sm text-gray-500 dark:text-gray-400 mt-1 font-semibold">ثقتكم ورضاكم عن الخامات والمقاسات هي سر استمرارنا</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-gray-50 dark:bg-slate-700/50 p-5 rounded-xl border border-gray-200 dark:border-slate-600">
-                        <div class="flex items-center gap-1 text-yellow-400 mb-2">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-xl border border-gray-200 dark:border-slate-600">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-1.5 text-xs">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <p class="text-sm text-gray-700 dark:text-gray-200 font-bold mb-3">"الترنج الآديداس خافته تحفة ومقاساته مضبوطة جداً، والتسليم كان فوري من الفرع بكوبري العصارة."</p>
-                        <span class="text-xs font-black text-blue-600 dark:text-blue-400">- أحمد محمود (أسيوط)</span>
+                        <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-200 font-bold mb-2.5">"الترنج الآديداس خامته تحفة ومقاساته مضبوطة جداً، والتسليم كان فوري من الفرع بكوبري العصارة."</p>
+                        <span class="text-[11px] font-black text-blue-600 dark:text-blue-400">- أحمد محمود (أسيوط)</span>
                     </div>
 
-                    <div class="bg-gray-50 dark:bg-slate-700/50 p-5 rounded-xl border border-gray-200 dark:border-slate-600">
-                        <div class="flex items-center gap-1 text-yellow-400 mb-2">
+                    <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-xl border border-gray-200 dark:border-slate-600">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-1.5 text-xs">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <p class="text-sm text-gray-700 dark:text-gray-200 font-bold mb-3">"طلبنا طقمين نايك وشورت جوردن. التوصيل للقاهرة أخد يومين بس والخامة ممتاز جداً بعد الغسيل."</p>
-                        <span class="text-xs font-black text-blue-600 dark:text-blue-400">- محمد حسين (القاهرة)</span>
+                        <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-200 font-bold mb-2.5">"طلبنا طقمين نايك وشورت جوردن. التوصيل للقاهرة أخد يومين بس والخامة ممتازة جداً بعد الغسيل."</p>
+                        <span class="text-[11px] font-black text-blue-600 dark:text-blue-400">- محمد حسين (القاهرة)</span>
                     </div>
 
-                    <div class="bg-gray-50 dark:bg-slate-700/50 p-5 rounded-xl border border-gray-200 dark:border-slate-600">
-                        <div class="flex items-center gap-1 text-yellow-400 mb-2">
+                    <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-xl border border-gray-200 dark:border-slate-600">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-1.5 text-xs">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                        <p class="text-sm text-gray-700 dark:text-gray-200 font-bold mb-3">"خدمة ممتازة وسرعة رد على الواتساب. استلمت الطلب وبجد خامة ميلتون صيفي ناعمة جداً."</p>
-                        <span class="text-xs font-black text-blue-600 dark:text-blue-400">- طارق مصطفى (سوهاج)</span>
+                        <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-200 font-bold mb-2.5">"خدمة ممتازة وسرعة رد على الواتساب. استلمت الطلب وبجد خامة ميلتون صيفي ناعمة جداً."</p>
+                        <span class="text-[11px] font-black text-blue-600 dark:text-blue-400">- طارق مصطفى (سوهاج)</span>
                     </div>
                 </div>
             </div>
@@ -175,42 +175,42 @@
     </div>
 
     <!-- Product Details View -->
-    <div id="productDetailView" class="container mx-auto px-4 py-8 flex-grow hidden">
-        <button onclick="showCatalogView()" class="mb-6 inline-flex items-center gap-2 bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 text-gray-900 dark:text-white font-bold px-4 py-2 rounded-xl transition shadow-sm">
+    <div id="productDetailView" class="container mx-auto px-3 py-6 flex-grow hidden">
+        <button onclick="showCatalogView()" class="mb-4 inline-flex items-center gap-2 bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 text-gray-900 dark:text-white font-bold px-3.5 py-1.5 rounded-xl transition text-xs shadow-sm">
             <i class="fas fa-arrow-right"></i> العودة للمتجر
         </button>
 
-        <div id="productDetailContent" class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 p-6 md:p-8">
+        <div id="productDetailContent" class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 p-4 sm:p-8">
             <!-- تفاصيل المنتج تولد ديناميكياً -->
         </div>
     </div>
 
     <!-- Image Fullscreen Zoom Modal -->
-    <div id="imageZoomModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden z-50 flex justify-center items-center p-4">
-        <button onclick="closeImageZoom()" class="absolute top-5 right-5 text-white text-3xl font-bold hover:text-red-400 transition">&times;</button>
+    <div id="imageZoomModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden z-50 flex justify-center items-center p-3">
+        <button onclick="closeImageZoom()" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-red-400 transition">&times;</button>
         <img id="zoomedImg" src="" class="max-w-full max-h-[90vh] rounded-xl object-contain shadow-2xl" alt="معاينة المكبرة">
     </div>
 
     <!-- Wishlist Modal -->
-    <div id="wishlistModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-center items-center p-4">
-        <div class="bg-white dark:bg-slate-800 w-full max-w-lg rounded-2xl shadow-2xl p-6 flex flex-col max-h-[85vh] border border-gray-200 dark:border-slate-700">
-            <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-3 mb-4">
-                <h3 class="text-xl font-black text-gray-900 dark:text-white"><i class="fas fa-heart text-red-500 ml-2"></i> قائمة المفضلات</h3>
+    <div id="wishlistModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-center items-center p-3">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-lg rounded-2xl shadow-2xl p-5 flex flex-col max-h-[85vh] border border-gray-200 dark:border-slate-700">
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-3 mb-3">
+                <h3 class="text-base sm:text-xl font-black text-gray-900 dark:text-white"><i class="fas fa-heart text-red-500 ml-1"></i> قائمة المفضلات</h3>
                 <button onclick="closeWishlistModal()" class="text-gray-400 hover:text-red-500 text-2xl font-bold transition">&times;</button>
             </div>
-            <div id="wishlistItems" class="space-y-4 overflow-y-auto flex-grow pr-1"></div>
+            <div id="wishlistItems" class="space-y-3 overflow-y-auto flex-grow pr-1"></div>
         </div>
     </div>
 
     <!-- Size Guide Modal -->
-    <div id="sizeGuideModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-center items-center p-4">
-        <div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-2xl shadow-2xl p-6 border border-gray-200 dark:border-slate-700">
-            <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-3 mb-4">
-                <h3 class="text-lg font-black text-gray-900 dark:text-white"><i class="fas fa-ruler-horizontal text-blue-600 dark:text-blue-400 ml-2"></i> دليل المقاسات التقريبي</h3>
+    <div id="sizeGuideModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-center items-center p-3">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-2xl shadow-2xl p-5 border border-gray-200 dark:border-slate-700">
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-3 mb-3">
+                <h3 class="text-sm sm:text-lg font-black text-gray-900 dark:text-white"><i class="fas fa-ruler-horizontal text-blue-600 dark:text-blue-400 ml-1"></i> دليل المقاسات التقريبي</h3>
                 <button onclick="closeSizeGuide()" class="text-gray-400 hover:text-red-500 text-2xl font-bold transition">&times;</button>
             </div>
             <div class="overflow-x-auto">
-                <table class="w-full text-center text-sm border-collapse">
+                <table class="w-full text-center text-xs sm:text-sm border-collapse">
                     <thead>
                         <tr class="bg-gray-100 dark:bg-slate-700 text-gray-900 dark:text-white font-black">
                             <th class="p-2 border border-gray-200 dark:border-slate-600">المقاس</th>
@@ -226,28 +226,28 @@
                     </tbody>
                 </table>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4 text-center font-semibold">ملاحظة: هذه القياسات تقريبية وتعتمد على نوع القصّة والخامة.</p>
+            <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-3 text-center font-semibold">ملاحظة: هذه القياسات تقريبية وتعتمد على نوع القصّة والخامة.</p>
         </div>
     </div>
 
     <!-- Cart & Shipping Calculator Modal -->
     <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-end">
-        <div class="bg-white dark:bg-slate-800 w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto border-r dark:border-slate-700">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-4 sm:p-6 overflow-y-auto border-r dark:border-slate-700">
             <div>
-                <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-4 mb-4">
-                    <h3 class="text-xl font-black text-gray-900 dark:text-white"><i class="fas fa-shopping-bag ml-2 text-blue-600 dark:text-blue-400"></i>سلة المشتريات</h3>
+                <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-3 mb-3">
+                    <h3 class="text-lg font-black text-gray-900 dark:text-white"><i class="fas fa-shopping-bag ml-1 text-blue-600 dark:text-blue-400"></i>سلة المشتريات</h3>
                     <button id="closeCart" class="text-gray-400 hover:text-red-500 text-2xl font-bold transition">&times;</button>
                 </div>
                 
-                <div id="cartItems" class="space-y-4">
-                    <p id="emptyCartMsg" class="text-center text-gray-500 dark:text-gray-400 py-8 font-bold">السلة فارغة حالياً.</p>
+                <div id="cartItems" class="space-y-3">
+                    <p id="emptyCartMsg" class="text-center text-gray-500 dark:text-gray-400 py-8 font-bold text-sm">السلة فارغة حالياً.</p>
                 </div>
             </div>
 
-            <div class="border-t border-gray-200 dark:border-slate-700 pt-4 mt-6 space-y-3">
+            <div class="border-t border-gray-200 dark:border-slate-700 pt-3 mt-4 space-y-3">
                 <!-- Shipping Calculator -->
-                <div class="bg-gray-50 dark:bg-slate-700/60 p-3 rounded-xl border border-gray-200 dark:border-slate-600">
-                    <label for="shippingCity" class="block text-xs font-black text-gray-800 dark:text-gray-200 mb-1.5"><i class="fas fa-truck text-blue-600 dark:text-blue-400 ml-1"></i> اختر مكان الاستلام / الشحن:</label>
+                <div class="bg-gray-50 dark:bg-slate-700/60 p-2.5 rounded-xl border border-gray-200 dark:border-slate-600">
+                    <label for="shippingCity" class="block text-[11px] sm:text-xs font-black text-gray-800 dark:text-gray-200 mb-1"><i class="fas fa-truck text-blue-600 dark:text-blue-400 ml-1"></i> اختر مكان الاستلام / الشحن:</label>
                     <select id="shippingCity" onchange="calculateShipping()" class="w-full bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-xs font-bold rounded-lg p-2 outline-none">
                         <option value="pickup">استلام من المحل (أسيوط - كوبري العصارة) [مجاناً - فوري]</option>
                         <option value="assiut">داخل مدينة أسيوط والمراكز (30 ج.م - خلال 24 ساعة)</option>
@@ -255,13 +255,13 @@
                         <option value="cairo_alex">القاهرة / الجيزة / الإسكندرية (65 ج.م - 2 لـ 3 أيام)</option>
                         <option value="delta_other">وجه بحري وباقي المحافظات (75 ج.م - 3 أيام)</option>
                     </select>
-                    <div id="shippingNotice" class="text-[11px] font-bold text-green-600 dark:text-green-400 mt-1.5 flex items-center gap-1">
+                    <div id="shippingNotice" class="text-[10px] sm:text-[11px] font-bold text-green-600 dark:text-green-400 mt-1 flex items-center gap-1">
                         <i class="fas fa-store"></i> استلام فوري بنفس اليوم من الفرع بدون مصاريف شحن.
                     </div>
                 </div>
 
                 <!-- Price Summary -->
-                <div class="space-y-1 text-sm font-bold text-gray-800 dark:text-gray-200 pt-2">
+                <div class="space-y-1 text-xs sm:text-sm font-bold text-gray-800 dark:text-gray-200 pt-1">
                     <div class="flex justify-between">
                         <span>المجموع الفرعي:</span>
                         <span id="cartSubtotal">0 ج.م</span>
@@ -274,14 +274,14 @@
                         <span>مصاريف الشحن:</span>
                         <span id="shippingCostVal">0 ج.م</span>
                     </div>
-                    <div class="flex justify-between items-center text-lg font-black text-gray-900 dark:text-white border-t border-gray-200 dark:border-slate-700 pt-2">
+                    <div class="flex justify-between items-center text-base sm:text-lg font-black text-gray-900 dark:text-white border-t border-gray-200 dark:border-slate-700 pt-2">
                         <span>الإجمالي الكلي:</span>
                         <span id="cartTotal" class="text-blue-600 dark:text-blue-400">0 ج.م</span>
                     </div>
                 </div>
 
-                <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition shadow-lg text-base">
-                    <i class="fab fa-whatsapp text-xl"></i>
+                <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 sm:py-3 rounded-xl flex items-center justify-center gap-2 transition shadow-lg text-sm sm:text-base">
+                    <i class="fab fa-whatsapp text-lg"></i>
                     <span>إرسال الطلب عبر الواتساب</span>
                 </button>
             </div>
@@ -289,11 +289,11 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-white text-center py-6 mt-12 border-t border-slate-800">
-        <div class="container mx-auto px-4 space-y-2">
-            <p class="font-black text-lg text-white">A.M. Sport</p>
-            <p class="text-sm text-gray-300 font-semibold">العنوان: أسيوط - مركز الفتح - أمام كوبري العصارة - بجوار فرع الفودافون واتصالات</p>
-            <p class="text-xs text-gray-400 pt-2 font-bold">تواصل واتساب / تلفون: 01151944700</p>
+    <footer class="bg-slate-900 text-white text-center py-5 mt-8 border-t border-slate-800">
+        <div class="container mx-auto px-3 space-y-1.5">
+            <p class="font-black text-base sm:text-lg text-white">A.M. Sport</p>
+            <p class="text-xs sm:text-sm text-gray-300 font-semibold leading-relaxed">العنوان: أسيوط - مركز الفتح - أمام كوبري العصارة - بجوار فرع الفودافون واتصالات</p>
+            <p class="text-[11px] sm:text-xs text-gray-400 pt-1 font-bold">تواصل واتساب / تلفون: 01151944700</p>
         </div>
     </footer>
 

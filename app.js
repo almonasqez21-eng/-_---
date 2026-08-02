@@ -1,5 +1,5 @@
 /**
- * A.M. Sport - Application Core
+ * A.M. Sport - Application Core (Mobile Optimized - No Direct Order Buttons on Catalog)
  */
 
 const products = [
@@ -205,11 +205,11 @@ function toggleDarkMode() {
     
     if (html.classList.contains('dark')) {
         html.classList.remove('dark');
-        if (icon) icon.className = "fas fa-moon text-lg";
+        if (icon) icon.className = "fas fa-moon text-base";
         localStorage.setItem('am_theme', 'light');
     } else {
         html.classList.add('dark');
-        if (icon) icon.className = "fas fa-sun text-lg text-yellow-300";
+        if (icon) icon.className = "fas fa-sun text-base text-yellow-300";
         localStorage.setItem('am_theme', 'dark');
     }
 }
@@ -220,10 +220,10 @@ function initTheme() {
     
     if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
-        if (icon) icon.className = "fas fa-sun text-lg text-yellow-300";
+        if (icon) icon.className = "fas fa-sun text-base text-yellow-300";
     } else {
         document.documentElement.classList.remove('dark');
-        if (icon) icon.className = "fas fa-moon text-lg";
+        if (icon) icon.className = "fas fa-moon text-base";
     }
 }
 
@@ -259,13 +259,13 @@ function applyFilters() {
     displayProducts(result);
 }
 
-// عرض المنتجات
+// عرض المنتجات (تم إزالة أزرار الطلب المباشر وجعل البطاقة تتسع للشاشات الصغيرة بنجاح)
 function displayProducts(items) {
     const grid = document.getElementById('productsGrid');
     if (!grid) return;
 
     if (items.length === 0) {
-        grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-700 dark:text-gray-200 font-black text-lg">لا توجد منتجات مطابقة للخيارات المختارة.</div>`;
+        grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-700 dark:text-gray-200 font-black text-sm">لا توجد منتجات مطابقة للخيارات المختارة.</div>`;
         return;
     }
 
@@ -275,66 +275,49 @@ function displayProducts(items) {
 
         return `
         <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden border border-gray-200 dark:border-slate-700 flex flex-col justify-between group relative">
-            <button onclick="toggleWishlist(${product.id}, event)" class="absolute top-3 left-3 z-10 w-9 h-9 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 transition shadow">
-                <i class="fa-heart ${isWish ? 'fas text-red-500' : 'far'}"></i>
+            <button onclick="toggleWishlist(${product.id}, event)" class="absolute top-2.5 left-2.5 z-10 w-8 h-8 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 transition shadow">
+                <i class="fa-heart ${isWish ? 'fas text-red-500' : 'far'} text-xs"></i>
             </button>
 
             <div onclick="openProductDetail(${product.id})" class="cursor-pointer">
-                <div class="relative bg-gray-100 dark:bg-slate-700 h-64 overflow-hidden">
+                <div class="relative bg-gray-100 dark:bg-slate-700 h-48 sm:h-60 overflow-hidden">
                     <img src="${product.images[0]}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     
-                    <div class="absolute top-3 right-3 flex flex-col gap-1 items-start">
-                        <span class="bg-slate-900/90 text-white text-xs px-2.5 py-1 rounded-full font-black">${product.brand}</span>
-                        ${discount > 0 ? `<span class="bg-red-600 text-white text-xs px-2 py-0.5 rounded-full font-black">خصم ${discount}%</span>` : ''}
+                    <div class="absolute top-2.5 right-2.5 flex flex-col gap-1 items-start">
+                        <span class="bg-slate-900/90 text-white text-[10px] px-2 py-0.5 rounded-full font-black">${product.brand}</span>
+                        ${discount > 0 ? `<span class="bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-full font-black">خصم ${discount}%</span>` : ''}
                     </div>
 
-                    <span class="absolute bottom-3 right-3 bg-blue-600/90 text-white text-xs px-2 py-1 rounded-lg font-bold">
+                    <span class="absolute bottom-2.5 right-2.5 bg-blue-600/90 text-white text-[10px] px-2 py-0.5 rounded-md font-bold">
                         ${product.colors.length} ألوان
                     </span>
                 </div>
 
-                <div class="p-4">
+                <div class="p-3">
                     <div class="flex items-center justify-between mb-1">
-                        <div class="flex items-center gap-1 text-yellow-500 text-xs font-black">
-                            <i class="fas fa-star"></i>
+                        <div class="flex items-center gap-1 text-yellow-500 text-[11px] font-black">
+                            <i class="fas fa-star text-[10px]"></i>
                             <span class="text-gray-800 dark:text-gray-200">${product.rating}</span>
                         </div>
-                        ${product.stock <= 3 ? `<span class="text-xs font-black text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/60 px-2 py-0.5 rounded border border-red-200 dark:border-red-900"><i class="fas fa-bolt ml-1"></i>متبقي ${product.stock} فقط!</span>` : ''}
+                        ${product.stock <= 3 ? `<span class="text-[10px] font-black text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/60 px-1.5 py-0.5 rounded border border-red-200 dark:border-red-900"><i class="fas fa-bolt ml-0.5"></i>متبقي ${product.stock}</span>` : ''}
                     </div>
 
-                    <h3 class="font-black text-gray-900 dark:text-white text-base mb-2 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition line-clamp-1">${product.name}</h3>
+                    <h3 class="font-black text-gray-900 dark:text-white text-xs sm:text-sm mb-1.5 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition line-clamp-1">${product.name}</h3>
                     
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-blue-600 dark:text-blue-400 font-black text-xl">${product.price} <span class="text-xs font-bold text-gray-700 dark:text-gray-300">ج.م</span></span>
-                        ${product.oldPrice ? `<span class="text-gray-400 dark:text-gray-400 text-xs line-through font-bold">${product.oldPrice} ج.م</span>` : ''}
+                    <div class="flex items-baseline gap-1.5">
+                        <span class="text-blue-600 dark:text-blue-400 font-black text-sm sm:text-base">${product.price} <span class="text-[10px] font-bold text-gray-700 dark:text-gray-300">ج.م</span></span>
+                        ${product.oldPrice ? `<span class="text-gray-400 dark:text-gray-400 text-[10px] line-through font-bold">${product.oldPrice} ج.م</span>` : ''}
                     </div>
                 </div>
             </div>
 
-            <div class="p-4 pt-0 grid grid-cols-5 gap-2">
-                <button onclick="openProductDetail(${product.id})" class="col-span-3 bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-blue-300 hover:bg-blue-600 hover:text-white font-bold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1 border border-blue-200 dark:border-slate-600">
-                    <i class="fas fa-eye"></i> التفاصيل
-                </button>
-                <button onclick="quickWhatsAppOrder(${product.id})" class="col-span-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1 shadow" title="شراء سريع عبر الواتساب">
-                    <i class="fab fa-whatsapp"></i> شراء
+            <div class="p-3 pt-0">
+                <button onclick="openProductDetail(${product.id})" class="w-full bg-blue-50 dark:bg-slate-700 text-blue-600 dark:text-blue-300 hover:bg-blue-600 hover:text-white font-bold py-2 rounded-xl text-xs transition flex items-center justify-center gap-1.5 border border-blue-200 dark:border-slate-600">
+                    <i class="fas fa-eye"></i> عرض التفاصيل والمقاسات
                 </button>
             </div>
         </div>
     `}).join('');
-}
-
-// طلب سريع لمنتج عبر الواتساب
-function quickWhatsAppOrder(productId) {
-    const product = products.find(p => p.id === productId);
-    if (!product) return;
-
-    const defaultColor = product.colors[0] || "الافتراضي";
-    const defaultSize = product.sizes[0] || "الافتراضي";
-
-    let msg = `مرحباً A.M. Sport 👋\nأود طلب المنتج التالي مباشرة:\n\n`;
-    msg += `📦 *${product.name}*\n- الماركة: ${product.brand}\n- اللون المفضل: ${defaultColor}\n- المقاس المفضل: ${defaultSize}\n- السعر: ${product.price} ج.م\n\nيرجى تأكيد المتاح والتنسيق مع المقار أو الشحن.`;
-
-    window.open(`https://wa.me/201151944700?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 // المفضلات Wishlist
@@ -363,19 +346,19 @@ function openWishlistModal() {
     if (!container) return;
 
     if (wishlist.length === 0) {
-        container.innerHTML = `<p class="text-center text-gray-700 dark:text-gray-300 py-8 font-black">لا توجد منتجات في المفضلة بعد.</p>`;
+        container.innerHTML = `<p class="text-center text-gray-700 dark:text-gray-300 py-8 font-black text-xs">لا توجد منتجات في المفضلة بعد.</p>`;
     } else {
         const wishProducts = products.filter(p => wishlist.includes(p.id));
         container.innerHTML = wishProducts.map(p => `
-            <div class="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 pb-3">
-                <div class="flex items-center gap-3 cursor-pointer" onclick="closeWishlistModal(); openProductDetail(${p.id})">
-                    <img src="${p.images[0]}" class="w-14 h-14 object-cover rounded-lg border border-gray-200 dark:border-slate-700">
+            <div class="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 pb-2.5">
+                <div class="flex items-center gap-2.5 cursor-pointer" onclick="closeWishlistModal(); openProductDetail(${p.id})">
+                    <img src="${p.images[0]}" class="w-12 h-12 object-cover rounded-lg border border-gray-200 dark:border-slate-700">
                     <div>
-                        <h4 class="font-bold text-sm text-gray-900 dark:text-white">${p.name}</h4>
+                        <h4 class="font-bold text-xs text-gray-900 dark:text-white">${p.name}</h4>
                         <span class="text-blue-600 dark:text-blue-400 font-bold text-xs">${p.price} ج.م</span>
                     </div>
                 </div>
-                <button onclick="toggleWishlist(${p.id}, event)" class="text-red-500 hover:text-red-700 text-sm font-bold p-2 transition">
+                <button onclick="toggleWishlist(${p.id}, event)" class="text-red-500 hover:text-red-700 text-xs font-bold p-2 transition">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </div>
@@ -403,51 +386,51 @@ function openProductDetail(productId) {
     const content = document.getElementById('productDetailContent');
 
     content.innerHTML = `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="space-y-4">
-                <div class="relative bg-gray-100 dark:bg-slate-700 rounded-2xl overflow-hidden h-96 shadow-md border border-gray-200 dark:border-slate-600">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-3">
+                <div class="relative bg-gray-100 dark:bg-slate-700 rounded-2xl overflow-hidden h-72 sm:h-80 shadow-md border border-gray-200 dark:border-slate-600">
                     <img id="mainDetailImg" src="${product.images[0]}" alt="${product.name}" class="w-full h-full object-cover cursor-pointer" onclick="openImageZoom('${product.images[0]}')">
                 </div>
-                <div class="flex gap-3 overflow-x-auto pb-2">
+                <div class="flex gap-2.5 overflow-x-auto pb-1">
                     ${product.images.map((img) => `
-                        <img src="${img}" onclick="changeDetailImage('${img}')" class="w-20 h-20 object-cover rounded-xl border-2 border-transparent hover:border-blue-600 cursor-pointer transition">
+                        <img src="${img}" onclick="changeDetailImage('${img}')" class="w-16 h-16 object-cover rounded-xl border-2 border-transparent hover:border-blue-600 cursor-pointer transition">
                     `).join('')}
                 </div>
             </div>
 
-            <div class="flex flex-col justify-between space-y-6">
+            <div class="flex flex-col justify-between space-y-4">
                 <div>
-                    <span class="bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-300 text-xs font-black px-3 py-1 rounded-full">${product.brand}</span>
-                    <h2 class="text-2xl font-black text-gray-900 dark:text-white mt-2 mb-3">${product.name}</h2>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">${product.description}</p>
+                    <span class="bg-blue-100 dark:bg-blue-900/60 text-blue-600 dark:text-blue-300 text-[10px] font-black px-2.5 py-0.5 rounded-full">${product.brand}</span>
+                    <h2 class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white mt-1.5 mb-2">${product.name}</h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-xs sm:text-sm leading-relaxed mb-3">${product.description}</p>
                     
-                    <div class="flex items-baseline gap-3 mb-6">
-                        <span class="text-3xl font-black text-blue-600 dark:text-blue-400">${product.price} ج.م</span>
-                        ${product.oldPrice ? `<span class="text-gray-400 text-lg line-through font-bold">${product.oldPrice} ج.م</span>` : ''}
-                        ${discount > 0 ? `<span class="bg-red-600 text-white text-xs px-2.5 py-1 rounded-full font-black">خصم ${discount}%</span>` : ''}
+                    <div class="flex items-baseline gap-2.5 mb-4">
+                        <span class="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400">${product.price} ج.م</span>
+                        ${product.oldPrice ? `<span class="text-gray-400 text-sm sm:text-lg line-through font-bold">${product.oldPrice} ج.م</span>` : ''}
+                        ${discount > 0 ? `<span class="bg-red-600 text-white text-[10px] px-2 py-0.5 rounded-full font-black">خصم ${discount}%</span>` : ''}
                     </div>
 
-                    <div class="mb-5">
-                        <label class="block text-sm font-black text-gray-900 dark:text-white mb-2">اللون المتاح:</label>
+                    <div class="mb-4">
+                        <label class="block text-xs sm:text-sm font-black text-gray-900 dark:text-white mb-1.5">اللون المتاح:</label>
                         <div class="flex flex-wrap gap-2">
                             ${product.colors.map((color, idx) => `
-                                <button type="button" onclick="selectDetailColor('${color}', '${product.colorImages[color] || product.images[0]}', this)" class="detail-color-btn ${idx === 0 ? 'bg-blue-600 text-white border-blue-600' : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white border-gray-300 dark:border-slate-600'} font-bold px-4 py-2 rounded-xl text-sm border transition">
+                                <button type="button" onclick="selectDetailColor('${color}', '${product.colorImages[color] || product.images[0]}', this)" class="detail-color-btn ${idx === 0 ? 'bg-blue-600 text-white border-blue-600' : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white border-gray-300 dark:border-slate-600'} font-bold px-3 py-1.5 rounded-xl text-xs border transition">
                                     ${color}
                                 </button>
                             `).join('')}
                         </div>
                     </div>
 
-                    <div class="mb-5">
-                        <div class="flex justify-between items-center mb-2">
-                            <label class="block text-sm font-black text-gray-900 dark:text-white">المقاس:</label>
-                            <button onclick="openSizeGuide()" class="text-xs text-blue-600 dark:text-blue-400 font-black hover:underline flex items-center gap-1">
+                    <div class="mb-4">
+                        <div class="flex justify-between items-center mb-1.5">
+                            <label class="block text-xs sm:text-sm font-black text-gray-900 dark:text-white">المقاس:</label>
+                            <button onclick="openSizeGuide()" class="text-[11px] text-blue-600 dark:text-blue-400 font-black hover:underline flex items-center gap-1">
                                 <i class="fas fa-ruler-horizontal"></i> دليل المقاسات
                             </button>
                         </div>
                         <div class="flex flex-wrap gap-2">
                             ${product.sizes.map((size, idx) => `
-                                <button type="button" onclick="selectDetailSize('${size}', this)" class="detail-size-btn ${idx === 0 ? 'bg-blue-600 text-white border-blue-600' : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white border-gray-300 dark:border-slate-600'} font-bold px-4 py-2 rounded-xl text-sm border transition">
+                                <button type="button" onclick="selectDetailSize('${size}', this)" class="detail-size-btn ${idx === 0 ? 'bg-blue-600 text-white border-blue-600' : 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-white border-gray-300 dark:border-slate-600'} font-bold px-3.5 py-1.5 rounded-xl text-xs border transition">
                                     ${size}
                                 </button>
                             `).join('')}
@@ -455,7 +438,7 @@ function openProductDetail(productId) {
                     </div>
                 </div>
 
-                <button onclick="addToCartFromDetail(${product.id})" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-lg">
+                <button onclick="addToCartFromDetail(${product.id})" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm sm:text-base">
                     <i class="fas fa-shopping-cart"></i> إضافة إلى السلة
                 </button>
             </div>
@@ -578,22 +561,22 @@ function updateCartUI() {
     if (!container) return;
 
     if (cart.length === 0) {
-        container.innerHTML = `<p id="emptyCartMsg" class="text-center text-gray-500 dark:text-gray-400 py-8 font-bold">السلة فارغة حالياً.</p>`;
+        container.innerHTML = `<p id="emptyCartMsg" class="text-center text-gray-500 dark:text-gray-400 py-8 font-bold text-xs">السلة فارغة حالياً.</p>`;
     } else {
         container.innerHTML = cart.map((item, idx) => `
-            <div class="flex items-center justify-between bg-gray-50 dark:bg-slate-700/50 p-3 rounded-xl border border-gray-200 dark:border-slate-700">
-                <div class="flex items-center gap-3">
-                    <img src="${item.image}" class="w-14 h-14 object-cover rounded-lg border border-gray-200 dark:border-slate-600">
+            <div class="flex items-center justify-between bg-gray-50 dark:bg-slate-700/50 p-2.5 rounded-xl border border-gray-200 dark:border-slate-700">
+                <div class="flex items-center gap-2.5">
+                    <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg border border-gray-200 dark:border-slate-600">
                     <div>
-                        <h4 class="font-bold text-sm text-gray-900 dark:text-white">${item.name}</h4>
-                        <div class="text-xs text-gray-500 dark:text-gray-300 font-semibold">اللون: ${item.color} | المقاس: ${item.size}</div>
-                        <div class="text-blue-600 dark:text-blue-400 font-bold text-xs mt-1">${item.price} × ${item.qty} = ${item.price * item.qty} ج.م</div>
+                        <h4 class="font-bold text-xs text-gray-900 dark:text-white line-clamp-1">${item.name}</h4>
+                        <div class="text-[10px] text-gray-500 dark:text-gray-300 font-semibold">لون: ${item.color} | مقاس: ${item.size}</div>
+                        <div class="text-blue-600 dark:text-blue-400 font-bold text-[11px] mt-0.5">${item.price} × ${item.qty} = ${item.price * item.qty} ج.م</div>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="changeQty(${idx}, -1)" class="w-7 h-7 bg-gray-200 dark:bg-slate-600 text-gray-800 dark:text-white rounded-lg font-bold flex items-center justify-center">-</button>
-                    <span class="font-bold text-sm dark:text-white">${item.qty}</span>
-                    <button onclick="changeQty(${idx}, 1)" class="w-7 h-7 bg-gray-200 dark:bg-slate-600 text-gray-800 dark:text-white rounded-lg font-bold flex items-center justify-center">+</button>
+                <div class="flex items-center gap-1.5">
+                    <button onclick="changeQty(${idx}, -1)" class="w-6 h-6 bg-gray-200 dark:bg-slate-600 text-gray-800 dark:text-white rounded-md font-bold flex items-center justify-center text-xs">-</button>
+                    <span class="font-bold text-xs dark:text-white">${item.qty}</span>
+                    <button onclick="changeQty(${idx}, 1)" class="w-6 h-6 bg-gray-200 dark:bg-slate-600 text-gray-800 dark:text-white rounded-md font-bold flex items-center justify-center text-xs">+</button>
                 </div>
             </div>
         `).join('');
