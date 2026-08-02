@@ -1,115 +1,286 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A.M. Sport - للملابس والمنتجات الرياضية</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <!-- FontAwesome icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts (Cairo) -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            blue: '#0055a5',
-                            dark: '#0a2540',
-                            accent: '#f39c12'
-                        }
-                    },
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50 font-cairo text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-50 dark:bg-slate-900 font-cairo text-gray-900 dark:text-gray-100 flex flex-col min-h-screen relative transition-colors duration-300">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 dark:bg-slate-800 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 border-r-4 border-blue-600">
+        <i id="toastIcon" class="fas fa-check-circle text-green-400 text-xl"></i>
+        <span id="toastMsg" class="font-bold text-sm">تمت العملية بنجاح</span>
+    </div>
+
+    <!-- Banner العرض الخارجي البارز أعلى الموقع -->
+    <div id="bundleOfferBanner" class="bg-gradient-to-r from-blue-700 via-indigo-600 to-blue-800 text-white py-2.5 px-4 shadow-md relative z-50 border-b border-blue-500/30">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-right">
+            <div class="flex items-center gap-2 font-black text-xs sm:text-sm">
+                <span class="bg-yellow-400 text-slate-900 text-xs px-2.5 py-0.5 rounded-full font-extrabold animate-pulse">عرض خاص 🔥</span>
+                <span>اشترِ قطعتين أو أكثر واحصل على <span class="text-yellow-300 font-extrabold text-sm sm:text-base">خصم 10% تلقائي</span> عند إتمام الطلب!</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <div class="text-[11px] bg-black/30 px-3 py-1 rounded-lg border border-white/20 font-mono tracking-wider text-yellow-300 font-bold">
+                    ينتهي العرض خلال: <span id="bannerCountdown" class="font-extrabold">07D 00:00:00</span>
+                </div>
+                <button onclick="dismissBanner()" class="text-white/80 hover:text-white text-lg font-bold transition px-1" title="إغلاق">&times;</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Header / Navigation -->
-    <header class="bg-brand-dark text-white sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Logo & Brand Name -->
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center p-1 border-2 border-brand-blue">
-                    <span class="text-brand-blue font-extrabold text-xl">A.M</span>
+    <header class="bg-slate-900 text-white sticky top-0 z-40 shadow-lg border-b border-slate-800">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center gap-2">
+            <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="showCatalogView()">
+                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center p-1 border-2 border-blue-600 shadow">
+                    <span class="text-blue-600 font-extrabold text-xl">A.M</span>
                 </div>
-                <div>
-                    <h1 class="font-extrabold text-xl tracking-wide text-white">A.M. Sport</h1>
-                    <p class="text-xs text-blue-200">Casual Wear & Sports</p>
+                <div class="hidden sm:block">
+                    <h1 class="font-black text-xl tracking-wide text-white">A.M. Sport</h1>
+                    <p class="text-xs text-blue-300 font-semibold">Casual Wear & Sports</p>
                 </div>
             </div>
 
-            <!-- Contact & Cart -->
-            <div class="flex items-center gap-4">
-                <a href="https://wa.me/201151566416" target="_blank" class="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3 rounded-lg transition">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-yellow-400 transition" title="تبديل الوضع الليلي">
+                    <i id="darkModeIcon" class="fas fa-moon text-lg"></i>
+                </button>
+
+                <button onclick="openWishlistModal()" class="relative bg-white/10 hover:bg-white/20 p-2.5 rounded-lg text-white transition">
+                    <i class="fas fa-heart text-lg text-red-400"></i>
+                    <span id="wishlistCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-black w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                </button>
+
+                <button id="cartBtn" class="relative bg-blue-600 hover:bg-blue-700 p-2.5 rounded-lg text-white transition">
+                    <i class="fas fa-shopping-cart text-lg"></i>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-black w-5 h-5 rounded-full flex items-center justify-center shadow">0</span>
+                </button>
+
+                <a href="https://wa.me/201151944700" target="_blank" class="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3.5 rounded-lg transition font-bold shadow">
                     <i class="fab font-bold text-lg fa-whatsapp"></i>
                     <span>تواصل معنا</span>
                 </a>
-                
-                <!-- Cart Button -->
-                <button id="cartBtn" class="relative bg-brand-blue hover:bg-blue-600 p-2.5 rounded-lg text-white transition">
-                    <i class="fas fa-shopping-cart text-lg"></i>
-                    <span id="cartCount" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
-                </button>
             </div>
         </div>
     </header>
 
-    <!-- Banner / Hero Section -->
-    <section class="bg-gradient-to-r from-brand-dark to-brand-blue text-white py-12 px-4 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-black mb-3">أحدث تشكيلة ملابس وأطقم رياضية</h2>
-            <p class="text-blue-100 text-base md:text-lg mb-6">خامات عالية الجودة، أسعار تنافسية، وشحن متاح لجميع المحافظات</p>
-            <div class="inline-flex gap-3 bg-white/10 p-2 rounded-xl backdrop-blur-sm border border-white/20">
-                <span class="text-sm px-3 py-1 bg-white text-brand-dark font-bold rounded-lg"><i class="fas fa-shipping-fast text-brand-blue ml-1"></i> توصيل سريع</span>
-                <span class="text-sm px-3 py-1 bg-white text-brand-dark font-bold rounded-lg"><i class="fas fa-check-circle text-brand-blue ml-1"></i> خامة ممتازة</span>
+    <!-- Catalog View -->
+    <div id="catalogView">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-12 px-4 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-2xl md:text-4xl font-black mb-3 leading-tight">أحدث تشكيلة ملابس وأطقم رياضية</h2>
+                <p class="text-blue-100 text-sm md:text-base mb-6 font-semibold">خامات عالية الجودة، أسعار تنافسية، واستلام فوري أو شحن لجميع المحافظات</p>
+                
+                <div class="relative max-w-lg mx-auto">
+                    <input type="text" id="searchInput" oninput="applyFilters()" placeholder="ابحث عن منتج، ماركة، أو نوع..." class="w-full py-3 pr-11 pl-4 rounded-xl text-gray-900 bg-white dark:bg-slate-800 dark:text-white dark:border-slate-600 text-sm font-bold outline-none shadow-lg focus:ring-2 focus:ring-blue-500 border border-transparent">
+                    <i class="fas fa-search absolute right-4 top-3.5 text-gray-400 dark:text-gray-300"></i>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Filter Categories -->
-    <section class="container mx-auto px-4 py-6">
-        <div class="flex flex-wrap justify-center gap-2 md:gap-4" id="filterContainer">
-            <button onclick="filterProducts('all')" class="filter-btn active bg-brand-dark text-white font-semibold px-4 py-2 rounded-full text-sm shadow transition">الكل</button>
-            <button onclick="filterProducts('sets')" class="filter-btn bg-white hover:bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-full text-sm border border-gray-200 shadow-sm transition">أطقم رياضية</button>
-            <button onclick="filterProducts('shorts')" class="filter-btn bg-white hover:bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-full text-sm border border-gray-200 shadow-sm transition">شورتات وملابس</button>
-        </div>
-    </section>
+        <!-- Filter & Sort Bar -->
+        <section class="container mx-auto px-4 py-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-4 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700">
+                <!-- Categories -->
+                <div class="flex flex-wrap justify-center gap-2" id="filterContainer">
+                    <button onclick="setCategoryFilter('all', this)" class="filter-btn bg-slate-900 dark:bg-blue-600 text-white font-bold px-4 py-2 rounded-full text-sm shadow transition">الكل</button>
+                    <button onclick="setCategoryFilter('sets', this)" class="filter-btn bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-800 dark:text-gray-100 font-bold px-4 py-2 rounded-full text-sm border border-gray-200 dark:border-slate-600 transition">أطقم رياضية</button>
+                    <button onclick="setCategoryFilter('shorts', this)" class="filter-btn bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-800 dark:text-gray-100 font-bold px-4 py-2 rounded-full text-sm border border-gray-200 dark:border-slate-600 transition">شورتات وملابس</button>
+                </div>
 
-    <!-- Products Grid Section -->
-    <main class="container mx-auto px-4 py-4 flex-grow">
-        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- المنتجات سيتم توليدها ديناميكياً بواسطة Javascript -->
-        </div>
-    </main>
+                <!-- Size & Price Sorting Controls -->
+                <div class="flex flex-wrap items-center justify-center gap-3 w-full lg:w-auto">
+                    <!-- Size Filter -->
+                    <div class="flex items-center gap-2">
+                        <label for="filterSize" class="text-sm font-black text-gray-800 dark:text-gray-200 whitespace-nowrap"><i class="fas fa-ruler ml-1 text-blue-600 dark:text-blue-400"></i> المقاس:</label>
+                        <select id="filterSize" onchange="applyFilters()" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-sm font-bold rounded-xl p-2.5 outline-none focus:border-blue-500">
+                            <option value="all">جميع المقاسات</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="2XL">2XL</option>
+                        </select>
+                    </div>
 
-    <!-- Cart Modal -->
+                    <!-- Sort Price -->
+                    <div class="flex items-center gap-2">
+                        <label for="sortPrice" class="text-sm font-black text-gray-800 dark:text-gray-200 whitespace-nowrap"><i class="fas fa-sort-amount-down ml-1 text-blue-600 dark:text-blue-400"></i> ترتيب:</label>
+                        <select id="sortPrice" onchange="applyFilters()" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-sm font-bold rounded-xl p-2.5 outline-none focus:border-blue-500">
+                            <option value="default">الافتراضي</option>
+                            <option value="lowToHigh">من الأقل للأعلى</option>
+                            <option value="highToLow">من الأعلى للأقل</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid Section -->
+        <main class="container mx-auto px-4 py-4 flex-grow">
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- المنتجات تولد ديناميكياً -->
+            </div>
+        </main>
+
+        <!-- Reviews Section -->
+        <section class="container mx-auto px-4 py-12">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 md:p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-black text-gray-900 dark:text-white"><i class="fas fa-star text-yellow-400 ml-2"></i> آراء وتقييمات عملاء A.M. Sport</h3>
+                    <p class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1 font-semibold">ثقتكم ورضاكم عن الخامات والمقاسات هي سر استمرارنا</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 dark:bg-slate-700/50 p-5 rounded-xl border border-gray-200 dark:border-slate-600">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-700 dark:text-gray-200 font-bold mb-3">"الترنج الآديداس خافته تحفة ومقاساته مضبوطة جداً، والتسليم كان فوري من الفرع بكوبري العصارة."</p>
+                        <span class="text-xs font-black text-blue-600 dark:text-blue-400">- أحمد محمود (أسيوط)</span>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-slate-700/50 p-5 rounded-xl border border-gray-200 dark:border-slate-600">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-700 dark:text-gray-200 font-bold mb-3">"طلبنا طقمين نايك وشورت جوردن. التوصيل للقاهرة أخد يومين بس والخامة ممتاز جداً بعد الغسيل."</p>
+                        <span class="text-xs font-black text-blue-600 dark:text-blue-400">- محمد حسين (القاهرة)</span>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-slate-700/50 p-5 rounded-xl border border-gray-200 dark:border-slate-600">
+                        <div class="flex items-center gap-1 text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-sm text-gray-700 dark:text-gray-200 font-bold mb-3">"خدمة ممتازة وسرعة رد على الواتساب. استلمت الطلب وبجد خامة ميلتون صيفي ناعمة جداً."</p>
+                        <span class="text-xs font-black text-blue-600 dark:text-blue-400">- طارق مصطفى (سوهاج)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Product Details View -->
+    <div id="productDetailView" class="container mx-auto px-4 py-8 flex-grow hidden">
+        <button onclick="showCatalogView()" class="mb-6 inline-flex items-center gap-2 bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 text-gray-900 dark:text-white font-bold px-4 py-2 rounded-xl transition shadow-sm">
+            <i class="fas fa-arrow-right"></i> العودة للمتجر
+        </button>
+
+        <div id="productDetailContent" class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 p-6 md:p-8">
+            <!-- تفاصيل المنتج تولد ديناميكياً -->
+        </div>
+    </div>
+
+    <!-- Image Fullscreen Zoom Modal -->
+    <div id="imageZoomModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden z-50 flex justify-center items-center p-4">
+        <button onclick="closeImageZoom()" class="absolute top-5 right-5 text-white text-3xl font-bold hover:text-red-400 transition">&times;</button>
+        <img id="zoomedImg" src="" class="max-w-full max-h-[90vh] rounded-xl object-contain shadow-2xl" alt="معاينة المكبرة">
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div id="wishlistModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-center items-center p-4">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-lg rounded-2xl shadow-2xl p-6 flex flex-col max-h-[85vh] border border-gray-200 dark:border-slate-700">
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-3 mb-4">
+                <h3 class="text-xl font-black text-gray-900 dark:text-white"><i class="fas fa-heart text-red-500 ml-2"></i> قائمة المفضلات</h3>
+                <button onclick="closeWishlistModal()" class="text-gray-400 hover:text-red-500 text-2xl font-bold transition">&times;</button>
+            </div>
+            <div id="wishlistItems" class="space-y-4 overflow-y-auto flex-grow pr-1"></div>
+        </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div id="sizeGuideModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-center items-center p-4">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-2xl shadow-2xl p-6 border border-gray-200 dark:border-slate-700">
+            <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-3 mb-4">
+                <h3 class="text-lg font-black text-gray-900 dark:text-white"><i class="fas fa-ruler-horizontal text-blue-600 dark:text-blue-400 ml-2"></i> دليل المقاسات التقريبي</h3>
+                <button onclick="closeSizeGuide()" class="text-gray-400 hover:text-red-500 text-2xl font-bold transition">&times;</button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-center text-sm border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 dark:bg-slate-700 text-gray-900 dark:text-white font-black">
+                            <th class="p-2 border border-gray-200 dark:border-slate-600">المقاس</th>
+                            <th class="p-2 border border-gray-200 dark:border-slate-600">الوزن التقريبي</th>
+                            <th class="p-2 border border-gray-200 dark:border-slate-600">عرض الصدر (سم)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-800 dark:text-gray-200 font-bold">
+                        <tr><td class="p-2 border border-gray-200 dark:border-slate-600 font-black">M</td><td class="p-2 border border-gray-200 dark:border-slate-600">55 - 65 كجم</td><td class="p-2 border border-gray-200 dark:border-slate-600">50 - 52</td></tr>
+                        <tr><td class="p-2 border border-gray-200 dark:border-slate-600 font-black">L</td><td class="p-2 border border-gray-200 dark:border-slate-600">65 - 75 كجم</td><td class="p-2 border border-gray-200 dark:border-slate-600">53 - 55</td></tr>
+                        <tr><td class="p-2 border border-gray-200 dark:border-slate-600 font-black">XL</td><td class="p-2 border border-gray-200 dark:border-slate-600">75 - 85 كجم</td><td class="p-2 border border-gray-200 dark:border-slate-600">56 - 58</td></tr>
+                        <tr><td class="p-2 border border-gray-200 dark:border-slate-600 font-black">2XL</td><td class="p-2 border border-gray-200 dark:border-slate-600">85 - 98 كجم</td><td class="p-2 border border-gray-200 dark:border-slate-600">59 - 62</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4 text-center font-semibold">ملاحظة: هذه القياسات تقريبية وتعتمد على نوع القصّة والخامة.</p>
+        </div>
+    </div>
+
+    <!-- Cart & Shipping Calculator Modal -->
     <div id="cartModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-end">
-        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto">
+        <div class="bg-white dark:bg-slate-800 w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto border-r dark:border-slate-700">
             <div>
-                <div class="flex justify-between items-center border-b pb-4 mb-4">
-                    <h3 class="text-xl font-bold text-gray-800"><i class="fas fa-shopping-bag ml-2 text-brand-blue"></i>سلة المشتريات</h3>
-                    <button id="closeCart" class="text-gray-400 hover:text-red-500 text-2xl font-bold">&times;</button>
+                <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-4 mb-4">
+                    <h3 class="text-xl font-black text-gray-900 dark:text-white"><i class="fas fa-shopping-bag ml-2 text-blue-600 dark:text-blue-400"></i>سلة المشتريات</h3>
+                    <button id="closeCart" class="text-gray-400 hover:text-red-500 text-2xl font-bold transition">&times;</button>
                 </div>
                 
                 <div id="cartItems" class="space-y-4">
-                    <!-- العناصر المضافة تظهر هنا -->
-                    <p id="emptyCartMsg" class="text-center text-gray-500 py-8">السلة فارغة حالياً.</p>
+                    <p id="emptyCartMsg" class="text-center text-gray-500 dark:text-gray-400 py-8 font-bold">السلة فارغة حالياً.</p>
                 </div>
             </div>
 
-            <div class="border-t pt-4 mt-6">
-                <div class="flex justify-between items-center mb-4 text-lg font-bold">
-                    <span>الإجمالي:</span>
-                    <span id="cartTotal" class="text-brand-blue">0 ج.م</span>
+            <div class="border-t border-gray-200 dark:border-slate-700 pt-4 mt-6 space-y-3">
+                <!-- Shipping Calculator -->
+                <div class="bg-gray-50 dark:bg-slate-700/60 p-3 rounded-xl border border-gray-200 dark:border-slate-600">
+                    <label for="shippingCity" class="block text-xs font-black text-gray-800 dark:text-gray-200 mb-1.5"><i class="fas fa-truck text-blue-600 dark:text-blue-400 ml-1"></i> اختر مكان الاستلام / الشحن:</label>
+                    <select id="shippingCity" onchange="calculateShipping()" class="w-full bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-xs font-bold rounded-lg p-2 outline-none">
+                        <option value="pickup">استلام من المحل (أسيوط - كوبري العصارة) [مجاناً - فوري]</option>
+                        <option value="assiut">داخل مدينة أسيوط والمراكز (30 ج.م - خلال 24 ساعة)</option>
+                        <option value="upper_egypt">محافظات الصعيد (سوهاج / المنيا / قنا...) (50 ج.م - 48 ساعة)</option>
+                        <option value="cairo_alex">القاهرة / الجيزة / الإسكندرية (65 ج.م - 2 لـ 3 أيام)</option>
+                        <option value="delta_other">وجه بحري وباقي المحافظات (75 ج.م - 3 أيام)</option>
+                    </select>
+                    <div id="shippingNotice" class="text-[11px] font-bold text-green-600 dark:text-green-400 mt-1.5 flex items-center gap-1">
+                        <i class="fas fa-store"></i> استلام فوري بنفس اليوم من الفرع بدون مصاريف شحن.
+                    </div>
                 </div>
-                <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition shadow-lg">
+
+                <!-- Price Summary -->
+                <div class="space-y-1 text-sm font-bold text-gray-800 dark:text-gray-200 pt-2">
+                    <div class="flex justify-between">
+                        <span>المجموع الفرعي:</span>
+                        <span id="cartSubtotal">0 ج.م</span>
+                    </div>
+                    <div id="bundleDiscountRow" class="flex justify-between text-green-600 dark:text-green-400 hidden">
+                        <span>خصم العرض (قطعتين فأكثر 10%):</span>
+                        <span id="bundleDiscountVal">-0 ج.م</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>مصاريف الشحن:</span>
+                        <span id="shippingCostVal">0 ج.م</span>
+                    </div>
+                    <div class="flex justify-between items-center text-lg font-black text-gray-900 dark:text-white border-t border-gray-200 dark:border-slate-700 pt-2">
+                        <span>الإجمالي الكلي:</span>
+                        <span id="cartTotal" class="text-blue-600 dark:text-blue-400">0 ج.م</span>
+                    </div>
+                </div>
+
+                <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition shadow-lg text-base">
                     <i class="fab fa-whatsapp text-xl"></i>
                     <span>إرسال الطلب عبر الواتساب</span>
                 </button>
@@ -118,265 +289,14 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-brand-dark text-white text-center py-6 mt-12 border-t border-gray-800">
+    <footer class="bg-slate-900 text-white text-center py-6 mt-12 border-t border-slate-800">
         <div class="container mx-auto px-4 space-y-2">
-            <p class="font-bold text-lg">A.M. Sport</p>
-            <p class="text-sm text-gray-400">العنوان: أسيوط - مركز الفتح - أمام كبري العصارة - بجوار فرع الفودافون واتصالات </p>
-            <p class="text-xs text-gray-500 pt-2">تواصل واتساب / تلفون: 01151944700</p>
+            <p class="font-black text-lg text-white">A.M. Sport</p>
+            <p class="text-sm text-gray-300 font-semibold">العنوان: أسيوط - مركز الفتح - أمام كوبري العصارة - بجوار فرع الفودافون واتصالات</p>
+            <p class="text-xs text-gray-400 pt-2 font-bold">تواصل واتساب / تلفون: 01151944700</p>
         </div>
     </footer>
 
-    <!-- JavaScript Data and Logic -->
-    <script>
-        // مصفوفة المنتجات بأسماء الصور الفعلية من المجلد
-        const products = [
-            {
-                id: 1,
-                name: "طقم Adidas ابيض وزيتي",
-                category: "sets",
-                price: 380,
-                sizes: ["L", "XL", "2XL"],
-                image: "اديدس ابيض وزيتي.jfif",
-                brand: "Adidas"
-            },
-            {
-                id: 2,
-                name: "طقم Adidas ازرق وبنطلون",
-                category: "sets",
-                price: 380,
-                sizes: ["L", "XL", "2XL"],
-                image: "اديدس ازرق وبنطلون.jfif",
-                brand: "Adidas"
-            },
-            {
-                id: 3,
-                name: "طقم Adidas ازرق وشورت",
-                category: "sets",
-                price: 350,
-                sizes: ["L", "XL", "2XL"],
-                image: "اديدس ازرق وشرت.jfif",
-                brand: "Adidas"
-            },
-            {
-                id: 4,
-                name: "طقم Adidas اسود وشورت",
-                category: "sets",
-                price: 350,
-                sizes: ["L", "XL", "2XL"],
-                image: "اديدس اسود وشرت.jfif",
-                brand: "Adidas"
-            },
-            {
-                id: 5,
-                name: "طقم بومة ابيض وبرتقالي",
-                category: "sets",
-                price: 350,
-                sizes: ["L", "XL", "2XL"],
-                image: "بوما ابيض وبرتقالي.jfif",
-                brand: "Puma"
-            },
-            {
-                id: 6,
-                name: "طقم بومة ازرق وبرتقالي",
-                category: "sets",
-                price: 350,
-                sizes: ["L", "XL", "2XL"],
-                image: "بوما ازرق وبرتقالي.jfif",
-                brand: "Puma"
-            },
-            {
-                id: 7,
-                name: "طقم بومة اسود وبرتقالي",
-                category: "sets",
-                price: 350,
-                sizes: ["L", "XL", "2XL"],
-                image: "بوما اسود وبرتقالي.jfif",
-                brand: "Puma"
-            },
-            {
-                id: 8,
-                name: "طقم نايكل ابيض واسود",
-                category: "sets",
-                price: 380,
-                sizes: ["L", "XL", "2XL"],
-                image: "نايكل ابيض واسود.jfif",
-                brand: "Nike"
-            },
-            {
-                id: 9,
-                name: "طقم نايكل ابيض ورادي",
-                category: "sets",
-                price: 380,
-                sizes: ["L", "XL", "2XL"],
-                image: "نايكل ابيض ورمادي.jfif",
-                brand: "Nike"
-            },
-            {
-                id: 10,
-                name: "شورت Jordan 23 شبك رياضي",
-                category: "shorts",
-                price: 180,
-                sizes: ["L", "XL", "2XL"],
-                image: "شورت ولد  ابيض.jfif",
-                brand: "Jordan"
-            },
-            {
-                id: 11,
-                name: "شورت Adidas سوفت أبيض كلاسيك",
-                category: "shorts",
-                price: 150,
-                sizes: ["M", "L", "XL", "2XL"],
-                image: "اديدس شورت.png",
-                brand: "Adidas"
-            }
-        ];
-
-        let cart = [];
-
-        // عرض المنتجات
-        function displayProducts(items) {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = items.map(product => `
-                <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 overflow-hidden border border-gray-100 flex flex-col justify-between">
-                    <div>
-                        <div class="relative bg-gray-100 h-64 overflow-hidden">
-                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-                            <span class="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-full font-bold">
-                                ${product.brand}
-                            </span>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-800 text-lg mb-1 leading-snug">${product.name}</h3>
-                            <div class="mb-3">
-                                <label class="text-xs text-gray-500 block mb-1">اختر المقاس المطلوب <span class="text-red-500">*</span>:</label>
-                                <select id="size-${product.id}" class="w-full bg-gray-50 border border-gray-200 text-gray-700 text-xs rounded-lg p-2 font-semibold focus:outline-none focus:border-brand-blue">
-                                    <option value="" disabled selected>-- حدد المقاس --</option>
-                                    ${product.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
-                                </select>
-                            </div>
-                            <div class="text-brand-blue font-extrabold text-xl">${product.price} <span class="text-xs font-normal">ج.م</span></div>
-                        </div>
-                    </div>
-                    <div class="p-4 pt-0">
-                        <button onclick="addToCart(${product.id})" class="w-full bg-brand-blue hover:bg-brand-dark text-white py-2.5 rounded-xl font-bold text-sm transition flex items-center justify-center gap-2">
-                            <i class="fas fa-cart-plus"></i> إضافة للسلة
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // فلترة المنتجات
-        function filterProducts(category) {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-brand-dark', 'text-white');
-                btn.classList.add('bg-white', 'text-gray-700');
-            });
-            event.target.classList.remove('bg-white', 'text-gray-700');
-            event.target.classList.add('bg-brand-dark', 'text-white');
-
-            if (category === 'all') {
-                displayProducts(products);
-            } else {
-                const filtered = products.filter(p => p.category === category);
-                displayProducts(filtered);
-            }
-        }
-
-        // إضافة للسلّة مع التحقق من اختيار المقاس
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const sizeSelect = document.getElementById(`size-${productId}`);
-            const selectedSize = sizeSelect.value;
-
-            // التحقق مما إذا كان العميل قد حدد مقاساً
-            if (!selectedSize) {
-                alert("يرجى اختيار المقاس المناسب أولاً من القائمة قبل الإضافة إلى السلة.");
-                sizeSelect.focus();
-                return;
-            }
-
-            // البحث عن نفس المنتج بنفس المقاس في السلة
-            const existingItem = cart.find(item => item.id === productId && item.selectedSize === selectedSize);
-
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ ...product, selectedSize: selectedSize, quantity: 1 });
-            }
-
-            updateCartUI();
-        }
-
-        // تحديث واجهة السلة
-        function updateCartUI() {
-            const cartCount = document.getElementById('cartCount');
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            
-            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-            cartCount.textContent = totalQuantity;
-            cartTotal.textContent = `${totalPrice} ج.م`;
-
-            if (cart.length === 0) {
-                cartItems.innerHTML = `<p class="text-center text-gray-500 py-8">السلة فارغة حالياً.</p>`;
-            } else {
-                cartItems.innerHTML = cart.map((item, index) => `
-                    <div class="flex items-center justify-between border-b pb-3">
-                        <div class="flex-1">
-                            <h4 class="font-bold text-sm text-gray-800">${item.name}</h4>
-                            <p class="text-xs text-gray-500 font-semibold mt-0.5">المقاس: <span class="text-brand-dark bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">${item.selectedSize}</span></p>
-                            <p class="text-xs text-brand-blue font-bold mt-1">${item.price} ج.م × ${item.quantity}</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="changeQuantity(${index}, -1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-sm font-bold">-</button>
-                            <span class="text-sm font-bold">${item.quantity}</span>
-                            <button onclick="changeQuantity(${index}, 1)" class="w-6 h-6 bg-gray-200 rounded flex items-center justify-center text-sm font-bold">+</button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function changeQuantity(cartIndex, delta) {
-            if (cart[cartIndex]) {
-                cart[cartIndex].quantity += delta;
-                if (cart[cartIndex].quantity <= 0) {
-                    cart.splice(cartIndex, 1);
-                }
-            }
-            updateCartUI();
-        }
-
-        // إرسال عبر الواتساب شاملة المقاس
-        function checkoutWhatsApp() {
-            if (cart.length === 0) {
-                alert('السلة فارغة! قم بإضافة بعض المنتجات أولاً.');
-                return;
-            }
-
-            let message = "مرحباً A.M. Sport، أرغب في طلب المنتجات التالية:\n\n";
-            cart.forEach((item, index) => {
-                message += `${index + 1}. ${item.name}\n- المقاس: ${item.selectedSize}\n- الكمية: ${item.quantity}\n- السعر: ${item.price * item.quantity} ج.م\n\n`;
-            });
-
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            message += `*الإجمالي:* ${total} ج.م`;
-
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/201151566416?text=${encodedMessage}`, '_blank');
-        }
-
-        // فتح وإغلاق السلة
-        const cartModal = document.getElementById('cartModal');
-        document.getElementById('cartBtn').addEventListener('click', () => cartModal.classList.remove('hidden'));
-        document.getElementById('closeCart').addEventListener('click', () => cartModal.classList.add('hidden'));
-
-        // التهيئة المبدئية
-        displayProducts(products);
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
