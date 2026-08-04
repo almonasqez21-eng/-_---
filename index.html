@@ -69,7 +69,7 @@
                     <span id="cartCount" class="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[10px] font-black w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow">0</span>
                 </button>
 
-                <a href="https://wa.me/201151566416" target="_blank" class="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3.5 rounded-lg transition font-bold shadow">
+                <a href="https://wa.me/201151944700" target="_blank" class="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3.5 rounded-lg transition font-bold shadow">
                     <i class="fab font-bold text-lg fa-whatsapp"></i>
                     <span>تواصل معنا</span>
                 </a>
@@ -79,7 +79,6 @@
 
     <!-- Catalog View -->
     <div id="catalogView">
-        <!-- Hero Section -->
         <section class="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white py-8 px-4 text-center">
             <div class="max-w-3xl mx-auto">
                 <h2 class="text-xl sm:text-3xl font-black mb-2 leading-tight">أحدث تشكيلة ملابس وأطقم رياضية</h2>
@@ -95,16 +94,13 @@
         <!-- Filter & Sort Bar -->
         <section class="container mx-auto px-3 py-4">
             <div class="flex flex-col md:flex-row justify-between items-center gap-3 bg-white dark:bg-slate-800 p-3 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700">
-                <!-- Categories -->
                 <div class="flex flex-wrap justify-center gap-1.5" id="filterContainer">
                     <button onclick="setCategoryFilter('all', this)" class="filter-btn bg-slate-900 dark:bg-blue-600 text-white font-bold px-3.5 py-1.5 rounded-full text-xs shadow transition">الكل</button>
                     <button onclick="setCategoryFilter('sets', this)" class="filter-btn bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-800 dark:text-gray-100 font-bold px-3.5 py-1.5 rounded-full text-xs border border-gray-200 dark:border-slate-600 transition">أطقم رياضية</button>
                     <button onclick="setCategoryFilter('shorts', this)" class="filter-btn bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-800 dark:text-gray-100 font-bold px-3.5 py-1.5 rounded-full text-xs border border-gray-200 dark:border-slate-600 transition">شورتات وملابس</button>
                 </div>
 
-                <!-- Size & Price Sorting Controls -->
                 <div class="flex flex-wrap items-center justify-center gap-2 w-full md:w-auto">
-                    <!-- Size Filter -->
                     <div class="flex items-center gap-1.5">
                         <label for="filterSize" class="text-xs font-black text-gray-800 dark:text-gray-200 whitespace-nowrap"><i class="fas fa-ruler ml-1 text-blue-600 dark:text-blue-400"></i> المقاس:</label>
                         <select id="filterSize" onchange="applyFilters()" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-xs font-bold rounded-lg p-2 outline-none focus:border-blue-500">
@@ -116,7 +112,6 @@
                         </select>
                     </div>
 
-                    <!-- Sort Price -->
                     <div class="flex items-center gap-1.5">
                         <label for="sortPrice" class="text-xs font-black text-gray-800 dark:text-gray-200 whitespace-nowrap"><i class="fas fa-sort-amount-down ml-1 text-blue-600 dark:text-blue-400"></i> ترتيب:</label>
                         <select id="sortPrice" onchange="applyFilters()" class="bg-gray-100 dark:bg-slate-700 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-xs font-bold rounded-lg p-2 outline-none focus:border-blue-500">
@@ -131,9 +126,7 @@
 
         <!-- Products Grid Section -->
         <main class="container mx-auto px-3 py-2 flex-grow">
-            <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-                <!-- المنتجات تولد ديناميكياً -->
-            </div>
+            <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5"></div>
         </main>
 
         <!-- Reviews Section -->
@@ -146,25 +139,19 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-xl border border-gray-200 dark:border-slate-600">
-                        <div class="flex items-center gap-1 text-yellow-400 mb-1.5 text-xs">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="flex items-center gap-1 text-yellow-400 mb-1.5 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-200 font-bold mb-2.5">"الترنج الآديداس خامته تحفة ومقاساته مضبوطة جداً، والتسليم كان فوري من الفرع بكوبري العصارة."</p>
                         <span class="text-[11px] font-black text-blue-600 dark:text-blue-400">- أحمد محمود (أسيوط)</span>
                     </div>
 
                     <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-xl border border-gray-200 dark:border-slate-600">
-                        <div class="flex items-center gap-1 text-yellow-400 mb-1.5 text-xs">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="flex items-center gap-1 text-yellow-400 mb-1.5 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-200 font-bold mb-2.5">"طلبنا طقمين نايك وشورت جوردن. التوصيل للقاهرة أخد يومين بس والخامة ممتازة جداً بعد الغسيل."</p>
                         <span class="text-[11px] font-black text-blue-600 dark:text-blue-400">- محمد حسين (القاهرة)</span>
                     </div>
 
                     <div class="bg-gray-50 dark:bg-slate-700/50 p-4 rounded-xl border border-gray-200 dark:border-slate-600">
-                        <div class="flex items-center gap-1 text-yellow-400 mb-1.5 text-xs">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
+                        <div class="flex items-center gap-1 text-yellow-400 mb-1.5 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                         <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-200 font-bold mb-2.5">"خدمة ممتازة وسرعة رد على الواتساب. استلمت الطلب وبجد خامة ميلتون صيفي ناعمة جداً."</p>
                         <span class="text-[11px] font-black text-blue-600 dark:text-blue-400">- طارق مصطفى (سوهاج)</span>
                     </div>
@@ -179,18 +166,15 @@
             <i class="fas fa-arrow-right"></i> العودة للمتجر
         </button>
 
-        <div id="productDetailContent" class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 p-4 sm:p-8">
-            <!-- تفاصيل المنتج تولد ديناميكياً -->
-        </div>
+        <div id="productDetailContent" class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 p-4 sm:p-8"></div>
     </div>
 
-    <!-- Image Fullscreen Zoom Modal -->
+    <!-- Modals -->
     <div id="imageZoomModal" class="fixed inset-0 bg-black/90 backdrop-blur-md hidden z-50 flex justify-center items-center p-3">
         <button onclick="closeImageZoom()" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-red-400 transition">&times;</button>
         <img id="zoomedImg" src="" class="max-w-full max-h-[90vh] rounded-xl object-contain shadow-2xl" alt="معاينة المكبرة">
     </div>
 
-    <!-- Wishlist Modal -->
     <div id="wishlistModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-center items-center p-3">
         <div class="bg-white dark:bg-slate-800 w-full max-w-lg rounded-2xl shadow-2xl p-5 flex flex-col max-h-[85vh] border border-gray-200 dark:border-slate-700">
             <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-3 mb-3">
@@ -201,7 +185,6 @@
         </div>
     </div>
 
-    <!-- Size Guide Modal -->
     <div id="sizeGuideModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 flex justify-center items-center p-3">
         <div class="bg-white dark:bg-slate-800 w-full max-w-md rounded-2xl shadow-2xl p-5 border border-gray-200 dark:border-slate-700">
             <div class="flex justify-between items-center border-b border-gray-200 dark:border-slate-700 pb-3 mb-3">
@@ -244,22 +227,35 @@
             </div>
 
             <div class="border-t border-gray-200 dark:border-slate-700 pt-3 mt-4 space-y-3">
-                <!-- Shipping Calculator -->
-                <div class="bg-gray-50 dark:bg-slate-700/60 p-2.5 rounded-xl border border-gray-200 dark:border-slate-600">
-                    <label for="shippingCity" class="block text-[11px] sm:text-xs font-black text-gray-800 dark:text-gray-200 mb-1"><i class="fas fa-truck text-blue-600 dark:text-blue-400 ml-1"></i> اختر مكان الاستلام / الشحن:</label>
-                    <select id="shippingCity" onchange="calculateShipping()" class="w-full bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-xs font-bold rounded-lg p-2 outline-none">
-                        <option value="pickup">استلام من المحل (أسيوط - كوبري العصارة) [مجاناً - فوري]</option>
-                        <option value="assiut">داخل مدينة أسيوط والمراكز (30 ج.م - خلال 24 ساعة)</option>
-                        <option value="upper_egypt">محافظات الصعيد (سوهاج / المنيا / قنا...) (50 ج.م - 48 ساعة)</option>
-                        <option value="cairo_alex">القاهرة / الجيزة / الإسكندرية (65 ج.م - 2 لـ 3 أيام)</option>
-                        <option value="delta_other">وجه بحري وباقي المحافظات (75 ج.م - 3 أيام)</option>
-                    </select>
-                    <div id="shippingNotice" class="text-[10px] sm:text-[11px] font-bold text-green-600 dark:text-green-400 mt-1 flex items-center gap-1">
-                        <i class="fas fa-store"></i> استلام فوري بنفس اليوم من الفرع بدون مصاريف شحن.
+                <div class="bg-gray-50 dark:bg-slate-700/60 p-2.5 rounded-xl border border-gray-200 dark:border-slate-600 space-y-2">
+                    <div>
+                        <label for="shippingCity" class="block text-[11px] sm:text-xs font-black text-gray-800 dark:text-gray-200 mb-1"><i class="fas fa-truck text-blue-600 dark:text-blue-400 ml-1"></i> اختر المحافظة / طريقة الاستلام:</label>
+                        <select id="shippingCity" onchange="calculateShipping()" class="w-full bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-xs font-bold rounded-lg p-2 outline-none">
+                            <option value="pickup">استلام من المحل (أسيوط - كوبري العصارة) [مجاناً - فوري]</option>
+                            <option value="assiut">أسيوط (داخل المدينة والمراكز) [40 ج.م]</option>
+                            <option value="sohag">سوهاج [60 ج.م]</option>
+                            <option value="minya">المنيا [60 ج.م]</option>
+                            <option value="beni_suef">بني سويف [60 ج.م]</option>
+                            <option value="fayoum">الفيوم [60 ج.م]</option>
+                            <option value="qena">قنا [60 ج.م]</option>
+                            <option value="luxor">الأقصر [70 ج.م]</option>
+                            <option value="aswan">أسوان [70 ج.م]</option>
+                            <option value="cairo">القاهرة [80 ج.م]</option>
+                            <option value="giza">الجيزة [80 ج.م]</option>
+                            <option value="alexandria">الإسكندرية [85 ج.م]</option>
+                            <option value="delta">وجه بحري وباقي المحافظات [90 ج.م]</option>
+                        </select>
+                        <div id="shippingNotice" class="text-[10px] sm:text-[11px] font-bold text-green-600 dark:text-green-400 mt-1 flex items-center gap-1">
+                            <i class="fas fa-store"></i> استلام فوري بنفس اليوم من الفرع بدون مصاريف شحن.
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="userAddressDetail" class="block text-[11px] sm:text-xs font-black text-gray-800 dark:text-gray-200 mb-1"><i class="fas fa-map-marker-alt text-red-500 ml-1"></i> تفاصيل العنوان (المدينة / الحي / الشارع / رقم الحلة):</label>
+                        <input type="text" id="userAddressDetail" placeholder="مثال: شارع الجمهورية، بجوار المستشفى..." class="w-full bg-white dark:bg-slate-800 border border-gray-300 dark:border-slate-600 text-gray-900 dark:text-white text-xs font-bold rounded-lg p-2 outline-none focus:ring-1 focus:ring-blue-500">
                     </div>
                 </div>
 
-                <!-- Price Summary -->
                 <div class="space-y-1 text-xs sm:text-sm font-bold text-gray-800 dark:text-gray-200 pt-1">
                     <div class="flex justify-between">
                         <span>المجموع الفرعي:</span>
@@ -292,7 +288,7 @@
         <div class="container mx-auto px-3 space-y-1.5">
             <p class="font-black text-base sm:text-lg text-white">A.M. Sport</p>
             <p class="text-xs sm:text-sm text-gray-300 font-semibold leading-relaxed">العنوان: أسيوط - مركز الفتح - أمام كوبري العصارة - بجوار فرع الفودافون واتصالات</p>
-            <p class="text-[11px] sm:text-xs text-gray-400 pt-1 font-bold">تواصل واتساب / تلفون: 01151566416</p>
+            <p class="text-[11px] sm:text-xs text-gray-400 pt-1 font-bold">تواصل واتساب / تلفون: +20 11 51944700</p>
         </div>
     </footer>
 

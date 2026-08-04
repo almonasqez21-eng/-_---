@@ -1,5 +1,5 @@
 /**
- * A.M. Sport - Application Core (Mobile Optimized - No Direct Order Buttons on Catalog)
+ * A.M. Sport - Application Core (Mobile Optimized - Separated Governorates & Address Input)
  */
 
 const products = [
@@ -13,10 +13,10 @@ const products = [
         stock: 3,
         sizes: ["L", "XL", "2XL"],
         colors: ["أبيض وزيتي", "أزرق وبنطلون"],
-        images: ["اديدس ابيض وزيتي.jfif", "اديدس ازرق وبنطلون.jfif"],
+        images: ["اديدس.ابيض وزيتي.jfif", "اديدس.ازرق وبنطلون.jfif"],
         colorImages: {
-            "أبيض وزيتي": "اديدس ابيض وزيتي.jfif",
-            "أزرق وبنطلون": "اديدس ازرق وبنطلون.jfif"
+            "أبيض وزيتي": "اديدس.ابيض وزيتي.jfif",
+            "أزرق وبنطلون": "اديدس.ازرق وبنطلون.jfif"
         },
         description: "ترنج رياضي قطني مريح وعالي الجودة مناسب للأنشطة الرياضية واليومية مع خامة ممتازة ومقاومة للتعرق.",
         brand: "Adidas"
@@ -31,10 +31,10 @@ const products = [
         stock: 5,
         sizes: ["L", "XL", "2XL"],
         colors: ["أزرق وشورت", "أسود وشورت"],
-        images: ["اديدس ازرق وشرت.jfif", "اديدس اسود وشرت.jfif"],
+        images: ["اديدس.ازرق وشرت.jfif", "اديدس.اسود وشرت.jfif"],
         colorImages: {
-            "أزرق وشورت": "اديدس ازرق وشرت.jfif",
-            "أسود وشورت": "اديدس اسود وشرت.jfif"
+            "أزرق وشورت": "اديدس.ازرق وشرت.jfif",
+            "أسود وشورت": "اديدس.اسود وشرت.jfif"
         },
         description: "طقم صيفي مريح جداً بخامة ميلتون صيفي خفيف ومعالج توفر أقصى أنواع الراحة أثناء التمرين.",
         brand: "Adidas"
@@ -49,11 +49,11 @@ const products = [
         stock: 2,
         sizes: ["M", "L", "XL"],
         colors: ["أبيض وبرتقالي", "أزرق وبرتقالي", "أسود وبرتقالي"],
-        images: ["بوما ابيض وبرتقالي.jfif", "بوما ازرق وبرتقالي.jfif", "بوما اسود وبرتقالي.jfif"],
+        images: ["بوما.ابيض وبرتقالي.jfif", "بوما.ازرق وبرتقالي.jfif", "بوما.اسود وبرتقالي.jfif"],
         colorImages: {
-            "أبيض وبرتقالي": "بوما ابيض وبرتقالي.jfif",
-            "أزرق وبرتقالي": "بوما ازرق وبرتقالي.jfif",
-            "أسود وبرتقالي": "بوما اسود وبرتقالي.jfif"
+            "أبيض وبرتقالي": "بوما.ابيض وبرتقالي.jfif",
+            "أزرق وبرتقالي": "بوما.ازرق وبرتقالي.jfif",
+            "أسود وبرتقالي": "بوما.اسود وبرتقالي.jfif"
         },
         description: "تصميم عصري رياضي من Puma بلمسات برتقالية مميزة، خامة خفيفة وعالية المرونة.",
         brand: "Puma"
@@ -68,10 +68,10 @@ const products = [
         stock: 8,
         sizes: ["L", "XL", "2XL"],
         colors: ["أبيض", "أصفر/أسود"],
-        images: ["شورت ولد  ابيض.jfif", "شورت ولد  اصفر.jfif"],
+        images: ["شورت.ولد.ابيض.jfif", "شورت.ولد.اصفر.jfif"],
         colorImages: {
-            "أبيض": "شورت ولد  ابيض.jfif",
-            "أصفر/أسود": "شورت ولد  اصفر.jfif"
+            "أبيض": "شورت.ولد.ابيض.jfif",
+            "أصفر/أسود": "شورت.ولد.اصفر.jfif"
         },
         description: "شورت شبكي مخصص لكرة السلة والتمارين الرياضية المكثفة، خفيف الوزن ويوفر تهوية ممتازة.",
         brand: "Jordan"
@@ -86,10 +86,10 @@ const products = [
         stock: 4,
         sizes: ["M", "L", "XL", "2XL"],
         colors: ["أبيض وأسود", "أبيض ورمادي"],
-        images: ["نايكل ابيض واسود.jfif", "نايكل ابيض ورمادي.jfif"],
+        images: ["نايكل.ابيض واسود.jfif", "نايكل.ابيض ورمادي.jfif"],
         colorImages: {
-            "أبيض وأسود": "نايكل ابيض واسود.jfif",
-            "أبيض ورمادي": "نايكل ابيض ورمادي.jfif"
+            "أبيض وأسود": "نايكل.ابيض واسود.jfif",
+            "أبيض ورمادي": "نايكل.ابيض ورمادي.jfif"
         },
         description: "طقم نايك خامة دايتك معالجة بطبعة مميزة ومظهر كاجوال راقي.",
         brand: "Nike"
@@ -104,9 +104,9 @@ const products = [
         stock: 6,
         sizes: ["M", "L", "XL", "2XL"],
         colors: ["أبيض"],
-        images: ["اديدس شورت.png"],
+        images: ["اديدس.شورت.png"],
         colorImages: {
-            "أبيض": "اديدس شورت.png"
+            "أبيض": "اديدس.شورت.png"
         },
         description: "شورت أديداس خامة سوفت ناعمة، تصميم كلاسيكي عملي ومناسب لجميع الأوقات.",
         brand: "Adidas"
@@ -119,13 +119,21 @@ let wishlist = JSON.parse(localStorage.getItem('am_wishlist')) || [];
 let selectedColorTemp = "";
 let selectedSizeTemp = "";
 
-// أسعار ومواعيد الشحن
+// أسعار ومواعيد الشحن لكل محافظة على حدة
 const shippingRates = {
     pickup: { cost: 0, text: "استلام فوري بنفس اليوم من الفرع (أسيوط - كوبري العصارة)" },
-    assiut: { cost: 30, text: "التوصيل خلال 24 ساعة داخل أسيوط" },
-    upper_egypt: { cost: 50, text: "التوصيل خلال 48 ساعة لمحافظات الصعيد" },
-    cairo_alex: { cost: 65, text: "التوصيل خلال 2 - 3 أيام عمل" },
-    delta_other: { cost: 75, text: "التوصيل خلال 3 أيام عمل" }
+    assiut: { cost: 40, text: "التوصيل خلال 24 ساعة داخل محافظة أسيوط" },
+    sohag: { cost: 60, text: "التوصيل خلال 48 ساعة لمحافظة سوهاج" },
+    qena: { cost: 60, text: "التوصيل خلال 48 ساعة لمحافظة قنا" },
+    luxor: { cost: 70, text: "التوصيل خلال 48 ساعة لمحافظة الأقصر" },
+    aswan: { cost: 70, text: "التوصيل خلال 48 ساعة لمحافظة أسوان" },
+    minya: { cost: 60, text: "التوصيل خلال 48 ساعة لمحافظة المنيا" },
+    beni_suef: { cost: 60, text: "التوصيل خلال 48 ساعة لمحافظة بني سويف" },
+    fayoum: { cost: 60, text: "التوصيل خلال 48 ساعة لمحافظة الفيوم" },
+    cairo: { cost: 80, text: "التوصيل خلال 2 - 3 أيام لمحافظة القاهرة" },
+    giza: { cost: 80, text: "التوصيل خلال 2 - 3 أيام لمحافظة الجيزة" },
+    alexandria: { cost: 85, text: "التوصيل خلال 2 - 3 أيام لمحافظة الإسكندرية" },
+    delta: { cost: 90, text: "التوصيل خلال 3 أيام لمحافظات وجه بحري وباقي المحافظات" }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -175,15 +183,11 @@ function startExtendedCountdown() {
     setInterval(updateTimer, 1000);
 }
 
-// إغلاق شريط العرض
 function dismissBanner() {
     const banner = document.getElementById('bundleOfferBanner');
-    if (banner) {
-        banner.style.display = 'none';
-    }
+    if (banner) banner.style.display = 'none';
 }
 
-// Toast إشعارات
 function showToast(message, isError = false) {
     const toast = document.getElementById('toast');
     const toastMsg = document.getElementById('toastMsg');
@@ -198,7 +202,6 @@ function showToast(message, isError = false) {
     setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
 }
 
-// الوضع الليلي
 function toggleDarkMode() {
     const html = document.documentElement;
     const icon = document.getElementById('darkModeIcon');
@@ -227,7 +230,6 @@ function initTheme() {
     }
 }
 
-// الفلترة والبحث
 function setCategoryFilter(category, btnElement) {
     currentCategory = category;
     document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -259,7 +261,6 @@ function applyFilters() {
     displayProducts(result);
 }
 
-// عرض المنتجات (تم إزالة أزرار الطلب المباشر وجعل البطاقة تتسع للشاشات الصغيرة بنجاح)
 function displayProducts(items) {
     const grid = document.getElementById('productsGrid');
     if (!grid) return;
@@ -320,7 +321,6 @@ function displayProducts(items) {
     `}).join('');
 }
 
-// المفضلات Wishlist
 function toggleWishlist(productId, event) {
     if(event) event.stopPropagation();
     const index = wishlist.indexOf(productId);
@@ -369,7 +369,6 @@ function openWishlistModal() {
 
 function closeWishlistModal() { document.getElementById('wishlistModal')?.classList.add('hidden'); }
 
-// تفاصيل المنتج
 function showCatalogView() {
     document.getElementById('catalogView').classList.remove('hidden');
     document.getElementById('productDetailView').classList.add('hidden');
@@ -488,7 +487,6 @@ function closeImageZoom() { document.getElementById('imageZoomModal').classList.
 function openSizeGuide() { document.getElementById('sizeGuideModal').classList.remove('hidden'); }
 function closeSizeGuide() { document.getElementById('sizeGuideModal').classList.add('hidden'); }
 
-// إدارة السلة وتكلفة الشحن والتجميعات
 function addToCartFromDetail(productId) {
     const product = products.find(p => p.id === productId);
     if (!product) return;
@@ -538,7 +536,6 @@ function updateCartUI() {
     const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
     const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
 
-    // احتساب خصم العرض (10% لقطعتين أو أكثر)
     let bundleDiscount = 0;
     if (totalQty >= 2) {
         bundleDiscount = Math.round(subtotal * 0.10);
@@ -595,15 +592,17 @@ function changeQty(index, delta) {
 function openCartModal() { document.getElementById('cartModal')?.classList.remove('hidden'); }
 function closeCartModal() { document.getElementById('cartModal')?.classList.add('hidden'); }
 
-// تحويل الطلب للواتساب
 function checkoutWhatsApp() {
     if (cart.length === 0) {
         showToast("السلة فارغة، أضف بعض المنتجات أولاً", true);
         return;
     }
 
-    const cityKey = document.getElementById('shippingCity')?.value || 'pickup';
+    const citySelect = document.getElementById('shippingCity');
+    const cityKey = citySelect?.value || 'pickup';
+    const cityName = citySelect?.options[citySelect.selectedIndex]?.text.split('[')[0].trim() || "";
     const shippingObj = shippingRates[cityKey];
+    const userAddressDetail = document.getElementById('userAddressDetail')?.value.trim() || "لم يكتب تفاصيل إضافية";
 
     const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
     const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
@@ -617,14 +616,15 @@ function checkoutWhatsApp() {
     });
 
     msg += `---------------------------\n`;
+    msg += `📍 *المحافظة:* ${cityName}\n`;
+    msg += `🏠 *تفاصيل العنوان:* ${userAddressDetail}\n`;
     msg += `📊 *المجموع الفرعي:* ${subtotal} ج.م\n`;
     if (bundleDiscount > 0) {
         msg += `🎉 *خصم العرض (10%):* -${bundleDiscount} ج.م\n`;
     }
-    msg += `🚚 *طريقة/مكان الاستلام:* ${shippingObj.text}\n`;
-    msg += `💰 *مصاريف الشحن:* ${shippingObj.cost} ج.م\n`;
+    msg += `🚚 *مصاريف الشحن (${shippingObj.text.split(' ')[0]}):* ${shippingObj.cost} ج.م\n`;
     msg += `✨ *الإجمالي الكلي المطلوب:* ${grandTotal} ج.م\n\n`;
     msg += `يرجى تأكيد تجهيز الطلب!`;
 
-    window.open(`https://wa.me/201151566416?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/201151944700?text=${encodeURIComponent(msg)}`, '_blank');
 }
