@@ -13,10 +13,10 @@ const products = [
         stock: 3,
         sizes: ["L", "XL", "2XL"],
         colors: ["أبيض وزيتي", "أزرق وبنطلون"],
-        images: ["اديدس.ابيض وزيتي.jfif", "اديدس.ازرق وبنطلون.jfif"],
+        images: ["اديدس ابيض وزيتي.jfif", "اديدس ازرق وبنطلون.jfif"],
         colorImages: {
-            "أبيض وزيتي": "اديدس.ابيض وزيتي.jfif",
-            "أزرق وبنطلون": "اديدس.ازرق وبنطلون.jfif"
+            "أبيض وزيتي": "اديدس ابيض وزيتي.jfif",
+            "أزرق وبنطلون": "اديدس ازرق وبنطلون.jfif"
         },
         description: "ترنج رياضي قطني مريح وعالي الجودة مناسب للأنشطة الرياضية واليومية مع خامة ممتازة ومقاومة للتعرق.",
         brand: "Adidas"
@@ -31,10 +31,10 @@ const products = [
         stock: 5,
         sizes: ["L", "XL", "2XL"],
         colors: ["أزرق وشورت", "أسود وشورت"],
-        images: ["اديدس.ازرق وشرت.jfif", "اديدس.اسود وشرت.jfif"],
+        images: ["اديدس ازرق وشرت.jfif", "اديدس اسود وشرت.jfif"],
         colorImages: {
-            "أزرق وشورت": "اديدس.ازرق وشرت.jfif",
-            "أسود وشورت": "اديدس.اسود وشرت.jfif"
+            "أزرق وشورت": "اديدس ازرق وشرت.jfif",
+            "أسود وشورت": "اديدس اسود وشرت.jfif"
         },
         description: "طقم صيفي مريح جداً بخامة ميلتون صيفي خفيف ومعالج توفر أقصى أنواع الراحة أثناء التمرين.",
         brand: "Adidas"
@@ -49,11 +49,11 @@ const products = [
         stock: 2,
         sizes: ["M", "L", "XL"],
         colors: ["أبيض وبرتقالي", "أزرق وبرتقالي", "أسود وبرتقالي"],
-        images: ["بوما.ابيض وبرتقالي.jfif", "بوما.ازرق وبرتقالي.jfif", "بوما.اسود وبرتقالي.jfif"],
+        images: ["بوما ابيض وبرتقالي.jfif", "بوما ازرق وبرتقالي.jfif", "بوما اسود وبرتقالي.jfif"],
         colorImages: {
-            "أبيض وبرتقالي": "بوما.ابيض وبرتقالي.jfif",
-            "أزرق وبرتقالي": "بوما.ازرق وبرتقالي.jfif",
-            "أسود وبرتقالي": "بوما.اسود وبرتقالي.jfif"
+            "أبيض وبرتقالي": "بوما ابيض وبرتقالي.jfif",
+            "أزرق وبرتقالي": "بوما ازرق وبرتقالي.jfif",
+            "أسود وبرتقالي": "بوما اسود وبرتقالي.jfif"
         },
         description: "تصميم عصري رياضي من Puma بلمسات برتقالية مميزة، خامة خفيفة وعالية المرونة.",
         brand: "Puma"
@@ -68,10 +68,10 @@ const products = [
         stock: 8,
         sizes: ["L", "XL", "2XL"],
         colors: ["أبيض", "أصفر/أسود"],
-        images: ["شورت.ولد.ابيض.jfif", "شورت.ولد.اصفر.jfif"],
+        images: ["شورت ولد  ابيض.jfif", "شورت ولد  اصفر.jfif"],
         colorImages: {
-            "أبيض": "شورت.ولد.ابيض.jfif",
-            "أصفر/أسود": "شورت.ولد.اصفر.jfif"
+            "أبيض": "شورت ولد ابيض.jfif",
+            "أصفر/أسود": "شورت ولد اصفر.jfif"
         },
         description: "شورت شبكي مخصص لكرة السلة والتمارين الرياضية المكثفة، خفيف الوزن ويوفر تهوية ممتازة.",
         brand: "Jordan"
@@ -86,10 +86,10 @@ const products = [
         stock: 4,
         sizes: ["M", "L", "XL", "2XL"],
         colors: ["أبيض وأسود", "أبيض ورمادي"],
-        images: ["نايكل.ابيض واسود.jfif", "نايكل.ابيض ورمادي.jfif"],
+        images: ["نايكل ابيض واسود.jfif", "نايكل ابيض ورمادي.jfif"],
         colorImages: {
-            "أبيض وأسود": "نايكل.ابيض واسود.jfif",
-            "أبيض ورمادي": "نايكل.ابيض ورمادي.jfif"
+            "أبيض وأسود": "نايكل ابيض واسود.jfif",
+            "أبيض ورمادي": "نايكل ابيض ورمادي.jfif"
         },
         description: "طقم نايك خامة دايتك معالجة بطبعة مميزة ومظهر كاجوال راقي.",
         brand: "Nike"
@@ -104,9 +104,9 @@ const products = [
         stock: 6,
         sizes: ["M", "L", "XL", "2XL"],
         colors: ["أبيض"],
-        images: ["اديدس.شورت.png"],
+        images: ["اديدس شورت.png"],
         colorImages: {
-            "أبيض": "اديدس.شورت.png"
+            "أبيض": "اديدس شورت.png"
         },
         description: "شورت أديداس خامة سوفت ناعمة، تصميم كلاسيكي عملي ومناسب لجميع الأوقات.",
         brand: "Adidas"
@@ -602,7 +602,20 @@ function checkoutWhatsApp() {
     const cityKey = citySelect?.value || 'pickup';
     const cityName = citySelect?.options[citySelect.selectedIndex]?.text.split('[')[0].trim() || "";
     const shippingObj = shippingRates[cityKey];
-    const userAddressDetail = document.getElementById('userAddressDetail')?.value.trim() || "لم يكتب تفاصيل إضافية";
+    
+    const addressInput = document.getElementById('userAddressDetail');
+    const userAddressDetail = addressInput?.value.trim() || "";
+
+    // التحقق من العنوان إذا كان الشحن توصيل وليس استلام من المحل
+    if (cityKey !== 'pickup' && !userAddressDetail) {
+        showToast("يرجى كتابة تفاصيل العنوان (الشارع ورقم العناوين بالتفصيل)", true);
+        if (addressInput) {
+            addressInput.focus();
+            addressInput.classList.add('border-red-500');
+            setTimeout(() => addressInput.classList.remove('border-red-500'), 3000);
+        }
+        return;
+    }
 
     const totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
     const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
@@ -616,13 +629,15 @@ function checkoutWhatsApp() {
     });
 
     msg += `---------------------------\n`;
-    msg += `📍 *المحافظة:* ${cityName}\n`;
-    msg += `🏠 *تفاصيل العنوان:* ${userAddressDetail}\n`;
+    msg += `📍 *طريقة الاستلام:* ${cityName}\n`;
+    if (cityKey !== 'pickup') {
+        msg += `🏠 *تفاصيل العنوان:* ${userAddressDetail}\n`;
+    }
     msg += `📊 *المجموع الفرعي:* ${subtotal} ج.م\n`;
     if (bundleDiscount > 0) {
         msg += `🎉 *خصم العرض (10%):* -${bundleDiscount} ج.م\n`;
     }
-    msg += `🚚 *مصاريف الشحن (${shippingObj.text.split(' ')[0]}):* ${shippingObj.cost} ج.م\n`;
+    msg += `🚚 *مصاريف الشحن:* ${shippingObj.cost} ج.م\n`;
     msg += `✨ *الإجمالي الكلي المطلوب:* ${grandTotal} ج.م\n\n`;
     msg += `يرجى تأكيد تجهيز الطلب!`;
 
