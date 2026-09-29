@@ -641,5 +641,5 @@ function checkoutWhatsApp() {
     msg += `✨ *الإجمالي الكلي المطلوب:* ${grandTotal} ج.م\n\n`;
     msg += `يرجى تأكيد تجهيز الطلب!`;
 
-    window.open(`https://wa.me/201151944700?text=${encodeURIComponent(msg)}`, '_blank');
+    window.open(`https://wa.me/201151566416?text=${encodeURIComponent(msg)}`, '_blank');
 }
